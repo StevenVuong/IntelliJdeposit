@@ -51,10 +51,11 @@ public class AlgorithmControl {
 	 // I decided to leave the timer() as it defaults(overloads) to 10ms when no parameters are entered upon invoking timer(x,y)
 	 public int timer(long maxTime, int loopSteps) {
 		 int loopposition = 0; //Initialising counter
+		 long maxTime1 = maxTime + System.currentTimeMillis();
 		 
-		 while (maxTime>= System.currentTimeMillis()) {
+		 while (maxTime1>= System.currentTimeMillis()) {
 			 if (loopposition%loopSteps==0){ //Creates condition for printing
-				 System.out.println("for "+maxTime+" mS timer - the number of loops so far is: "+loopposition);
+				 System.out.println("for "+maxTime+" mS timer with counting every "+loopSteps+" loops - the total number of loops so far is: "+loopposition);
 			 }
 			 loopposition++;
 		 }
@@ -80,26 +81,29 @@ public class AlgorithmControl {
 		twofoureight.increment();
 		//
 		System.out.println("");
-		//
+		//Creating objects
 		AlgorithmControl timeTime0 = new AlgorithmControl();
-		AlgorithmControl timeTime = new AlgorithmControl();
-		timeTime.timer();
-		//
 		AlgorithmControl timeTime1 = new AlgorithmControl();
-		timeTime1.timer(8000,1000);
-		//
 		AlgorithmControl timeTime2 = new AlgorithmControl();
-		timeTime2.timer(8000,40000);
-		
-		//Declaring the output as an integer
-		int loop0 = timeTime0.timer(10000,100);
-		int loop1 = timeTime1.timer(8000,1000);
-		int loop2 = timeTime2.timer(8000,40000);
-		//Here I've attempted to run the three values parallel to each other. However, the method returns multiple values and so the value of 'loop0' either locks or constantly updates.
-		//Regardless of which one it does, only one value is printed rather than the preferred of multiple iterations.
-		System.out.println("First Loop(10s, prints every 100 loops): " + loop0 + " Second Loop(8s, prints every 1000 loops): " + loop1 + " Third Loop(8s, prints every 40000 loops): " + loop2);
+		//Declaring the output as an integer and setting parameters 
+		int loop0 = timeTime0.timer(10000,100); //10s, counts every 100 loops
+		int loop1 = timeTime1.timer(8000,1000); //8s, counts every 1000 loops
+		int loop2 = timeTime2.timer(8000,40000); //8s, counts every 40,000 loops
 		//
-		
+		System.out.println(" ");
+		//
+		System.out.println("N.o of loops for 10s, counting every 100 loops: " + loop0);
+		System.out.println("N.o of loops for 8s, counting every 1000 loops: "+loop1);
+		System.out.println("N.o of loops for 8s, counting every 40,000 loops: "+loop2);
+		//
+		System.out.println("");
+		//Increasing multiple, less to do between each iteration, able to run more interations. Counting itself slows it down so are less iterations. IF condition 
+		System.out.println("The number of loops completed increases from 10s to 8s despite the amount of time increasing,");
+		System.out.println("This factor is due to the fact that the program has to count more often, therefore slowing it down");
+		System.out.println("as it has to run more iterations. This example is shown further when counting every 40,000 loops.");
+		System.out.println("As there gap between is greater, there is less for the program to do between each iteration, allowing");
+		System.out.println("it to run more iterations as the act of counting slows down the operation. This effect and difference");
+		System.out.println("could be exaggerated by further slowing down the CPU by e.g. running more background processes");
 	}
 
 }
