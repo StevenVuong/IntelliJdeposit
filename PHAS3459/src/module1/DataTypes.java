@@ -3,7 +3,7 @@ import java.lang.Math.*;
 public class DataTypes {
 
 	public static void main(String[] args) {
-		
+		//banana
 		//Changing the variable of 10
 		
 		double doubVar = 10.0;
