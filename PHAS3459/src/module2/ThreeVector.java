@@ -70,12 +70,5 @@ public class ThreeVector {
 	}
 	
 
-	public static void main(String[] args) {
-		ThreeVector testVector = new ThreeVector(1.0, 2.0, 3.0);
-		ThreeVector testVector2 = new ThreeVector(1.0, 2.0, 3.0);
-		ThreeVector.scalarProduct(testVector, testVector2);
-		testVector.scalarProduct(testVector2); // non static calling. Belongs to object
-		// System.out.println(v);
-	}
 
 }
