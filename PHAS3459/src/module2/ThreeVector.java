@@ -56,6 +56,19 @@ public class ThreeVector {
 	public double scalarProduct(ThreeVector vector) {
 		return ThreeVector.scalarProduct(this, vector);
 	}
+	
+	public ThreeVector vectorProduct(ThreeVector vector) {
+		return ThreeVector.vectorProduct(this,vector);
+	}
+	
+	public ThreeVector add(ThreeVector vector) {
+		return ThreeVector.add(this,vector);
+	}
+	
+	public double angle(ThreeVector vector) {
+		return ThreeVector.angle(this, vector);
+	}
+	
 
 	public static void main(String[] args) {
 		ThreeVector testVector = new ThreeVector(1.0, 2.0, 3.0);
