@@ -5,11 +5,11 @@ public class ThreeVector {
 	private double x;
 	private double y;
 	private double z;
-
-	public ThreeVector(double point, double y, double point3) {
-		x = point;
+	
+	public ThreeVector(double x, double y, double z) {
+		this.x = x;
 		this.y = y;
-		this.z = point3;
+		this.z = z;
 	}
 
 	public double magnitude() {
@@ -17,9 +17,9 @@ public class ThreeVector {
 		return b;
 	}
 
-	public double magnitude(double x1, double y1, double z1) {
-		double b = Math.sqrt(((x1 * x1) + (y1 * y1) + (z1 * z1)));
-		return b;
+	public ThreeVector unitVector() {
+		double magntitude = magnitude();
+		return new ThreeVector(x/magntitude, y/magntitude, z/magntitude);
 	}
 
 	public static void main(String[] args) {
