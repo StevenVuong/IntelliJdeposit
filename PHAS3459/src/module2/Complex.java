@@ -5,13 +5,6 @@ public class Complex {
 	private double re;
 	private double im;
 
-	// @Override
-	// public String toString() {
-	// return "Complex [re=" + re + ", im=" + im + "i]";
-	// } // Check if I need to do for all items..
-
-	// Creates complex object, y will be the imaginary component, x will be the
-	// real. With this, we can copy, relabel & manipulate
 	public Complex(double re, double im) {
 		this.re = re;
 		this.im = im;

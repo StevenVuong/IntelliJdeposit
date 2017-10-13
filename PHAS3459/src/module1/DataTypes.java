@@ -75,7 +75,7 @@ public class DataTypes {
 		//p2 = p1;
 		System.out.println("When trying to convert 4.99 to an int, an error appears, 'cannot convert double to int' ");
 		p2 = (int) p1; // Using a cast now
-		System.out.println("Using a cast, however, our result becomes: "+p2+", it is clear this becomes rounded down");
+		System.out.println("Using a cast, however, our result becomes: "+p2+", it is clear this becomes rounded down. Because the resolution of 0.99 is too small to be comprehended by the 4 to add on");
 	}
 
 }
