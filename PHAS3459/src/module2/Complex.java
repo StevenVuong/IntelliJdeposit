@@ -30,7 +30,7 @@ public class Complex {
 	}
 
 	public double angle() { // returns argument of complex number from positive real axis
-		return Math.atan(im / re);
+		return Math.atan(im / re); //test, there's also 'atan2'
 	}
 
 	public Complex conjugate() { // returns the complex conjugate of the complex number
@@ -52,9 +52,15 @@ public class Complex {
 	}
 
 	public String toString() {
-		return "Complex [re=" + re + ", im=" + im + "i]";
+		return "re=" + re + ", im=" + im + "i";
 	}
 
+	public Complex setFromModulusAngle(double mag, double ang) {
+			double x1 = mag*Math.cos(ang);
+			double y1 = mag*Math.sin(ang);
+			Complex a = new Complex(x1,y1);
+			return a;
+	}
 }
 
 // public static void main(String[] args) {
