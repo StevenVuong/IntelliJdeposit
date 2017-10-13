@@ -50,7 +50,7 @@ public class Complex {
 	}
 
 	public String toString() {
-		return "re=" + re + ", im=" + im + "i";
+		return ("re=" + re + ", im=" + im+ "i");
 	}
 
 	public Complex setFromModulusAngle(double mag, double ang) {
