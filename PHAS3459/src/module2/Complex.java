@@ -17,6 +17,11 @@ public class Complex {
 		this.im = im;
 	}
 
+	//Creating static Complex Numbers 
+	public static final Complex ONE = new Complex(1,0);
+	public static final Complex ZERO = new Complex(0,0);
+	public static final Complex I = new Complex(0,1);
+	
 	public double real() { // returns real part of complex number
 		return re;
 	}
@@ -61,11 +66,28 @@ public class Complex {
 			Complex a = new Complex(x1,y1);
 			return a;
 	}
+
+	public static Complex add(Complex a, Complex b) {
+		return new Complex((a.re + b.re),(a.im+b.im));
+	}
+
+	public static Complex subtract(Complex a, Complex b) {
+		return new Complex((a.re - b.re),(a.im - b.im));
+	}
+	
+	public static Complex multiply(Complex a, Complex b) {
+		double x1 = ((a.re*b.re)-(a.im*b.im));
+		double y1 = ((a.re*b.im)+(a.im*b.re));
+		return new Complex (x1,y1);
+	}
+	
+	public static Complex divide(Complex a, Complex b) {
+		double real = ((a.re*b.re)+(a.im*b.im));
+		double imag = ((a.im*b.re)-(a.re*b.im));
+		double mag = ((b.re*b.re)+(b.im*b.im));
+		return new Complex((real/mag),(imag/mag));
+	}
+	
 }
 
-// public static void main(String[] args) {
-// // TODO Auto-generated method stub
-//
-// }
-//
-// }
+
