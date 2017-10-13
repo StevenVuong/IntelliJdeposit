@@ -5,10 +5,10 @@ public class Complex {
 	private double re;
 	private double im;
 
-//	@Override
-//	public String toString() {
-//		return "Complex [re=" + re + ", im=" + im + "i]";
-//	} // Check if I need to do for all items..
+	// @Override
+	// public String toString() {
+	// return "Complex [re=" + re + ", im=" + im + "i]";
+	// } // Check if I need to do for all items..
 
 	// Creates complex object, y will be the imaginary component, x will be the
 	// real. With this, we can copy, relabel & manipulate
@@ -44,17 +44,17 @@ public class Complex {
 	}
 
 	public boolean equals(Complex c) {
-		Complex test =new Complex(re,im);
-			if (c==test) { 
-				return true;
-			}
-			else return false;
-		}
+		Complex test = new Complex(re, im);
+		if (c == test) {
+			return true;
+		} else
+			return false;
+	}
 
 	public String toString() {
-		return "Complex [re="+re+", im="+im+"i]";
+		return "Complex [re=" + re + ", im=" + im + "i]";
 	}
-	
+
 }
 
 // public static void main(String[] args) {
