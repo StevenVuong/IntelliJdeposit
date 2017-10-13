@@ -51,11 +51,13 @@ public class TestThreeVector {
 				+ angleNonStaticv1v3); // returns NaN?
 
 		System.out.println("");
-		//System.out.println(v);
-		System.out.println("When I try to run 'System.out.println(v)' without a toString(), it states v cannot be resolved to a variable.");
-		System.out.println("This implies that the code does not acknowledge v as a string until defined so with tostring().");
+		// System.out.println(v);
+		System.out.println(
+				"When I try to run 'System.out.println(v)' without a toString(), it states v cannot be resolved to a variable.");
+		System.out.println(
+				"This implies that the code does not acknowledge v as a string until defined so with tostring().");
 		System.out.println("This is because v is not defined as a vector.");
-		
+
 	}
 
 }
