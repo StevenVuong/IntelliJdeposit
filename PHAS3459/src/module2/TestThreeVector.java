@@ -11,6 +11,7 @@ public class TestThreeVector {
 		System.out.println("v2: "+v2);
 		System.out.println("v3: "+v3);
 		
+		System.out.println("");
 		//static scalar & vector product
 		double scalarStaticv1v2 = ThreeVector.scalarProduct(v1, v2); 
 		double scalarStaticv1v3 = ThreeVector.scalarProduct(v1, v3); 
@@ -23,6 +24,7 @@ public class TestThreeVector {
 	    ThreeVector vectorNonStaticv1v2 = v1.vectorProduct(v2);
 	    ThreeVector vectorNonStaticv1v3 = v1.vectorProduct(v3);
 	    
+		System.out.println("");
 	    //Printing both static & non-static scalar/vector products
 	    System.out.println("Static scalar product of v1 & v2 is: "+scalarStaticv1v2+ " and the non-static equivalent is: "+scalarNonStaticv1v2);
 	    System.out.println("Static scalar product of v1 & v3 is: "+scalarStaticv1v3+" and the non-static equivalent is: "+scalarNonStaticv1v3);
@@ -37,9 +39,16 @@ public class TestThreeVector {
 	    double angleNonStaticv1v2 = v1.angle(v2);
 	    double angleNonStaticv1v3 = v1.angle(v3);
 	    
+		System.out.println("");
 	    //Printing both static & non-static angles
-	    System.out.println("static angle between v1 & v2 is: "+angleStaticv1v2+" and the non-static equivalent is: "+angleNonStaticv1v2);
-	    System.out.println("static angle between v1 & v3 is: "+angleStaticv1v3+" and the non-static equivalent is: "+angleNonStaticv1v3);
+	    System.out.println("Static angle between v1 & v2 is: "+angleStaticv1v2+" and the non-static equivalent is: "+angleNonStaticv1v2); //Answers in radians?
+	    System.out.println("Static angle between v1 & v3 is: "+angleStaticv1v3+" and the non-static equivalent is: "+angleNonStaticv1v3); //returns NaN?
+	    
+	    System.out.println("");
+	    //System.out.println(v); 
+	    System.out.println("When I try to run 'System.out.println(v)' without a toString(), it states v cannot be resolved to a variable.");
+	    System.out.println("This implies that the code does not acknowledge v as a string until defined so with tostring()."); //check over..
+	    	
 		
 	}
 	
