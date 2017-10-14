@@ -2,12 +2,12 @@ package module2;
 
 public class Complex {
 
-	private double re;
-	private double im;
+	private double real;
+	private double imagine;
 
 	public Complex(double re, double im) {
-		this.re = re;
-		this.im = im;
+		this.real = re;
+		this.imagine = im;
 	}
 
 	//Creating static Complex Numbers 
@@ -16,33 +16,33 @@ public class Complex {
 	public static final Complex I = new Complex(0,1);
 	
 	public double real() { // returns real part of complex number
-		return re;
+		return real;
 	}
 
 	public double imag() { // returns imaginary part of complex number
-		return im;
+		return imagine;
 	}
 
 	public double modulus() { // returns modulus of complex number
-		return Math.sqrt((re * re) + (im * im));
+		return Math.sqrt((real * real) + (imagine * imagine));
 	}
 
 	public double angle() { // returns argument of complex number from positive real axis
-		return Math.atan(im / re); //test, there's also 'atan2'
+		return Math.atan(imagine / real); //test, there's also 'atan2'
 	}
 
 	public Complex conjugate() { // returns the complex conjugate of the complex number
-		Complex a = new Complex(re, -im);
+		Complex a = new Complex(real, -imagine);
 		return a;
 	}
 
 	public Complex normalised() {
 		double mod = modulus();
-		return new Complex((re / mod), (im / mod));
+		return new Complex((real / mod), (imagine / mod));
 	}
 
 	public boolean equals(Complex c) {
-		Complex test = new Complex(re, im);
+		Complex test = new Complex(real, imagine);
 		if (c == test) {
 			return true;
 		} else
@@ -50,7 +50,7 @@ public class Complex {
 	}
 
 	public String toString() {
-		return ("re=" + re + ", im=" + im+ "i");
+		return ("re=" + real + ", im=" + imagine+ "i");
 	}
 
 	public Complex setFromModulusAngle(double mag, double ang) {
@@ -61,23 +61,23 @@ public class Complex {
 	}
 
 	public static Complex add(Complex a, Complex b) {
-		return new Complex((a.re + b.re),(a.im+b.im));
+		return new Complex((a.real + b.real),(a.imagine+b.imagine));
 	}
 
 	public static Complex subtract(Complex a, Complex b) {
-		return new Complex((a.re - b.re),(a.im - b.im));
+		return new Complex((a.real - b.real),(a.imagine - b.imagine));
 	}
 	
 	public static Complex multiply(Complex a, Complex b) {
-		double x1 = ((a.re*b.re)-(a.im*b.im));
-		double y1 = ((a.re*b.im)+(a.im*b.re));
+		double x1 = ((a.real*b.real)-(a.imagine*b.imagine));
+		double y1 = ((a.real*b.imagine)+(a.imagine*b.real));
 		return new Complex (x1,y1);
 	}
 	
 	public static Complex divide(Complex a, Complex b) {
-		double real = ((a.re*b.re)+(a.im*b.im));
-		double imag = ((a.im*b.re)-(a.re*b.im));
-		double mag = ((b.re*b.re)+(b.im*b.im));
+		double real = ((a.real*b.real)+(a.imagine*b.imagine));
+		double imag = ((a.imagine*b.real)-(a.real*b.imagine));
+		double mag = ((b.real*b.real)+(b.imagine*b.imagine));
 		return new Complex((real/mag),(imag/mag));
 	}
 	
