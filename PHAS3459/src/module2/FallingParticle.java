@@ -57,11 +57,8 @@ public class FallingParticle {
 		int runAmount =0; //initialises the loop counter
 		while (z > 0) { //Sets the condition for the loop
 			doTimeStep(deltaT);
-			System.out.println("we are now at : " + z);
-			System.out.println("we going at " + v + "m/s");
+			System.out.println("we are now at : " + z +"m above the ground, going at "+v+" m/s, the loop counter is: "+runAmount+" and "+t+" s has passed");
 			runAmount++; //increases the loop counter by 1
-			System.out.println("we've run this "+ runAmount);
-			
 		}
 	}
 
