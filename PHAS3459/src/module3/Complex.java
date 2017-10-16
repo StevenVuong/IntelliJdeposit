@@ -37,8 +37,11 @@ public class Complex {
 		return a;
 	}
 
-	public Complex normalised() { //returns the normalised complex number
+	public Complex normalised() throws Exception { //returns the normalised complex number, also includes a 'throw exception' so sets the fail condition and backup option
 		double mod = modulus(); //calculates the modulus and assigns it to a 'mod' variable to divide by
+		if (mod == 0.0) { //creates exception condition
+			throw new Exception ("Unable to return a normalised complex number a zero complex number has no modulus"); //what it does in event of exception
+		}
 		return new Complex((real / mod), (imagine / mod));
 	}
 
@@ -75,12 +78,12 @@ public class Complex {
 		return new Complex (x1,y1);
 	}
 	
-	public static Complex divide(Complex a, Complex b) throws Exception { //method dividing one complex number by another
+	public static Complex divide(Complex a, Complex b) throws Exception { //method dividing one complex number by another with exception for a division by zero
 		double real = ((a.real*b.real)+(a.imagine*b.imagine));
 		double imag = ((a.imagine*b.real)-(a.real*b.imagine));
 		double mag = ((b.real*b.real)+(b.imagine*b.imagine));
-		if (mag == 0.0) {
-			throw new Exception("we have a zero complex number ");
+		if (mag == 0.0) { //sets condition of which there would be a division by zero
+			throw new Exception("we have a zero complex number and therefore cannot calculate divide!"); //prints statement in event of exception
 		}
 		return new Complex((real/mag),(imag/mag));
 	}

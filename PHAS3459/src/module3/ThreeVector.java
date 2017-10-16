@@ -18,8 +18,11 @@ public class ThreeVector {
 		return Math.sqrt(((x * x) + (y * y) + (z * z)));
 	}
 
-	public ThreeVector unitVector() { //Finds the unit vector of the vector by dividing by the magnitude
+	public ThreeVector unitVector() throws Exception { //Finds the unit vector of the vector by dividing by the magnitude with a throw exception for when a zero vector is input
 		double mag = magnitude();
+		if (mag == 0.0) { //creates the condition to throw an exception
+			throw new Exception("The unit vector cannot be calculated as this is a zero vector"); //prints the output when the exception is called
+		}
 		return new ThreeVector(x / mag, y / mag, z / mag);
 	}
 
@@ -47,10 +50,13 @@ public class ThreeVector {
 		return vectorAdd;
 	}
 
-	public static double angle(ThreeVector vector1, ThreeVector vector2) { //Finds the angle between two vectors (Static method)
+	public static double angle(ThreeVector vector1, ThreeVector vector2) throws Exception{ //Finds the angle between two vectors (Static method)
 		double dot = scalarProduct(vector1, vector2);
 		double mag1 = vector1.magnitude();
 		double mag2 = vector2.magnitude();
+		if ((mag1 == 0.0)||(mag2 ==0.0)) { //Creates 'or' condition for the exception if one of the vectors has a zero magnitude
+			throw new Exception("the angle cannot be calculated as one of the vectors is a zero vector");
+		}
 		return Math.acos(dot / (mag1 * mag2)); // calculates angle
 
 	}
@@ -67,7 +73,7 @@ public class ThreeVector {
 		return ThreeVector.add(this, vector);
 	}
 
-	public double angle(ThreeVector vector) { //Calculates the angle between two vectors (non-static), using the previous static method
+	public double angle(ThreeVector vector) throws Exception { //Calculates the angle between two vectors (non-static), using the previous static method with an exception class for a zero vector condition
 		return ThreeVector.angle(this, vector);
 	}
 
