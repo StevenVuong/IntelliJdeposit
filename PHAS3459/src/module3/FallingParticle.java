@@ -12,22 +12,28 @@ public class FallingParticle {
 	private static final double g = -9.81;
 
 	//Creating constructor for the particle, setting the drag coefficient and the mass of the particle
-	public FallingParticle(double m, double d) {
+	public FallingParticle(double m, double d) throws Exception { //with an exception so the mass is always positive (a physical particle)
 		this.m = m;
 		this.d = d;
+		if (m<0) {
+			throw new Exception("Fail to construct particle, input a positive mass");
+		}
 		t = 0; //initialising the time for a particle (this could be done outside for the constructor if there were multiple particles for instance
 	}
 
-	public void setH(double h) { //creating the setter which initialises h, note that a void has no return
+	public void setH(double h) throws Exception { //creating the setter which initialises h, note that a void has no return, with an exception so the drop height is always positive
 		this.h = h;
+		if (h<0) {
+			throw new Exception("fail to set height, input a height greater than 0");
+		}
 		this.z = h;
 	}
 
-	public double getV() { //creating the getter which returns the current velocity
+	public double getV() { //creating the getter which returns the current velocity 
 		return v;
 	}
 
-	public void setV(double v) { //creating the setter which sets the initial velocity
+	public void setV(double v) { //creating the setter which sets the initial velocity, there is no exception as a negative velocity could indicate the particle was thrown upwards initially
 		this.v = v;
 	}
 
