@@ -22,8 +22,6 @@ public class Test {
 		 }
 
 	 
-	 
-	 
 	 public static void main(String[] args) throws Exception {
 
 		 for (int k=10; k<20; k++) { //When a method throws an exception, doesn't have to return a value, this sets exception condition

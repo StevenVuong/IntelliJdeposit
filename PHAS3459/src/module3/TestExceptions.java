@@ -1,5 +1,7 @@
 package module3;
 
+import module2.FallingParticle;
+
 public class TestExceptions {
 
 	public static void main(String[] args) throws Exception {
@@ -7,22 +9,29 @@ public class TestExceptions {
 		//Creates complex numbers
 		Complex c1 = new Complex (1,2);
 		
-		 Complex a = Complex.divide(c1,Complex.ZERO);
-		 System.out.println("a is: "+a);
-		 
-//How do I carry on with running the script?
-		 Complex b = new Complex(0.0,0.0);
-		 b = Complex.ZERO.normalised();
-		 System.out.println("b is: "+b);
-		 
 		 //Creates three vectors
 		 ThreeVector v1 = new ThreeVector (0.0,0.0, 0.0);
 		 ThreeVector v2 = new ThreeVector (1.0,2.0,3.0);
+		
+//		 Complex a = Complex.divide(c1,Complex.ZERO);
+//		 
+//////How do I carry on with running the script? after an error
+//	//I need to create 'catch' which prints out the error onto the screen? Using try and catch?
+//
+//		 Complex b = Complex.ZERO.normalised();
+//		 
+//		 ThreeVector v3 = v1.unitVector();
+//
+//		 double v4 = v1.angle(v2); //USE THIS	
+//		 
+//		 FallingParticle fallingObject = new FallingParticle (-1.0,2);
 		 
-		 ThreeVector v3 = v1.unitVector();
-		 System.out.println("v3 unit vector is: "+v3);
+		 FallingParticle fallingObject2 = new FallingParticle(5.3, 3.6); //creates the 'falling particle' object
 		 
-		 double v4 = v1.angle(v2); //USE THIS
+		 fallingObject2.setH(-5.0); //no error is thrown?
+		 fallingObject2.getZ();
+		 
+
 		 
 	}
 

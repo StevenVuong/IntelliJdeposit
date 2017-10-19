@@ -23,7 +23,7 @@ public class FallingParticle {
 
 	public void setH(double h) throws Exception { //creating the setter which initialises h, note that a void has no return, with an exception so the drop height is always positive
 		this.h = h;
-		if (h<0) {
+		if (h<0.0) {
 			throw new Exception("fail to set height, input a height greater than 0");
 		}
 		this.z = h;
