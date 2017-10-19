@@ -23,7 +23,7 @@ public class ThreeVector {
 														// magnitude with a throw exception for when a zero vector is
 														// input
 		double mag = magnitude();
-		if (mag == 0.0) { // creates the condition to throw an exception
+		if (mag == 0.0) { // creates the condition to throw an exception (zero magnitude)
 			throw new Exception("The unit vector cannot be calculated as this is a zero vector"); // prints the output
 																									// when the
 																									// exception is
@@ -63,11 +63,13 @@ public class ThreeVector {
 	public static double angle(ThreeVector vector1, ThreeVector vector2) throws Exception { // Finds the angle between
 																							// two vectors (Static
 																							// method)
+		// and includes 'Exception' to deal with trying to calculate the angle between
+		// two vectors when one is a zero vector
 		double dot = scalarProduct(vector1, vector2);
 		double mag1 = vector1.magnitude();
 		double mag2 = vector2.magnitude();
-		if ((mag1 == 0.0) || (mag2 == 0.0)) { // Creates 'or' condition for the exception if one of the vectors has a
-												// zero magnitude
+		if ((mag1 == 0.0) || (mag2 == 0.0)) { // Sets exception condition (if one of the vectors is a zero vector
+												// (0,0,0)
 			throw new Exception("the angle cannot be calculated as one of the vectors is a zero vector");
 		}
 		return Math.acos(dot / (mag1 * mag2)); // calculates angle

@@ -18,18 +18,21 @@ public class FallingParticle {
 
 		this.m = m;
 		this.d = d;
-		if (m < 0.0) {
-			throw new Exception("Fail to construct particle, input a positive mass");
+		if (m < 0.0) { // sets unphysical condition
+			throw new Exception("Fail to construct particle, input a positive mass"); // error statement for an
+																						// unphysical particle
 		}
 		t = 0; // initialising the time for a particle (this could be done outside for the
 				// constructor if there were multiple particles for instance
 	}
 
 	public void setH(double h) throws Exception { // creating the setter which initialises h, note that a void has no
-													// return, with an exception so the drop height is always positive
+													// return, with an exception so the drop height is always positive,
+													// and accounts for any possible negative h, which would set a
+													// negative z and hence be unphysical
 		this.h = h;
-		if (h < 0.0) {
-			throw new Exception("fail to set height, input a height greater than 0");
+		if (h < 0.0) { // sets unphysical condition
+			throw new Exception("fail to set height, input a height greater than 0!"); // output for unphysical scenario
 		}
 		this.z = h;
 	}
@@ -65,11 +68,10 @@ public class FallingParticle {
 		double deltaZ = v * t; // calculates the change in vertical position
 		z = z - deltaZ; // sets the current vertical position by adding the previous vertical position
 						// to the change in vertical position
-		if (t > 20) {
-			throw new Exception("The particle has taken longer than 20 seconds to fall");
-		}
+
 		if (z < 0) { // creates an 'if' condition why adds realistic parameters (means the ball
-						// doesn't travel through the floor!
+						// doesn't travel through the floor! Also, lets us know that when the ball hits
+						// the floor, it has stopped
 			z = 0;
 			v = 0;
 		}
