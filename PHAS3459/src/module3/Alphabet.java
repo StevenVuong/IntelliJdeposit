@@ -4,7 +4,6 @@ import java.util.Random;
 import java.lang.Character;
 import java.lang.Integer;
 import java.lang.StringBuilder;
-import java.lang.Math;
 
 public class Alphabet {
 
@@ -17,6 +16,8 @@ public class Alphabet {
 	}
 
 	public static StringBuilder randomString = new StringBuilder(); // initialises a string with StringBuilder
+	public static int randomSums = 0;
+	public static int randomExceptions = 0;
 
 	public static void main(String[] args) throws Exception {
 
@@ -27,19 +28,24 @@ public class Alphabet {
 			boolean randomCharBoolean = Character.isLetterOrDigit(randomChar);
 			if (randomCharBoolean == true) { // creates condition for 'if' loop
 				randomString.append(randomChar); // adds the letter/digit to the string
-			//	System.out.println(randomString); //testing stringBuilder so far
+
 				try {
 					String randomString = Character.toString(randomChar); //converts character to string
 					Integer randomLetterOrDigit = Integer.parseInt(randomString); // parse integer
-				//	System.out.println(randomLetterOrDigit); //test
+
+					randomSums += randomLetterOrDigit; //adds the integer onto the current summation
 				} catch (Exception e) {
-					//System.out.println("THIS DOESN'T WORK! "+e);
+					randomExceptions ++; //adds one to count the number of exceptions
 				}
 			}
 			counter++;
 		}
+		System.out.println("the StringBuilder string is: ");
+		System.out.println(randomString);
+		System.out.println("");
+		System.out.println("The sum of numbers added together are: "+randomSums);
+		System.out.println("The number of exceptions thrown by Integer.parseInt() is: "+randomExceptions);
 
-		// System.out.println(randomChar);
 
 	}
 
