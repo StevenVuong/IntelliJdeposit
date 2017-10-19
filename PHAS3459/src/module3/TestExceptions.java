@@ -13,18 +13,20 @@ public class TestExceptions {
 		 ThreeVector v1 = new ThreeVector (0.0,0.0, 0.0);
 		 ThreeVector v2 = new ThreeVector (1.0,2.0,3.0);
 		
-//		 Complex a = Complex.divide(c1,Complex.ZERO);
-//		 
-//////How do I carry on with running the script? after an error
-//	//I need to create 'catch' which prints out the error onto the screen? Using try and catch?
-//
-//		 Complex b = Complex.ZERO.normalised();
-//		 
-//		 ThreeVector v3 = v1.unitVector();
-//
-//		 double v4 = v1.angle(v2); //USE THIS	
-//		 
-//		 FallingParticle fallingObject = new FallingParticle (-1.0,2);
+try {	 Complex a = Complex.divide(c1,Complex.ZERO);}
+catch (Exception e){System.out.println("divide err :" +e);}
+
+try {		 Complex b = Complex.ZERO.normalised();}
+catch (Exception e) {System.out.println("complex normising err :"+e);}
+
+try {	 ThreeVector v3 = v1.unitVector();}
+catch (Exception e) {System.out.println("unit vector err :"+e);}
+
+try {	 double v4 = v1.angle(v2);}
+catch (Exception e) {System.out.println("angle calc err :"+e);}
+
+try {FallingParticle fallingObject = new FallingParticle (-5.0,2);}
+catch (Exception e) {System.out.println("falling particle err, negative mass :"+e);}
 		 
 		 FallingParticle fallingObject2 = new FallingParticle(5.3, 3.6); //creates the 'falling particle' object
 		 

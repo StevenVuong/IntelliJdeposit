@@ -12,11 +12,12 @@ public class FallingParticle {
 	private static final double g = -9.81;
 
 	//Creating constructor for the particle, setting the drag coefficient and the mass of the particle
-	public FallingParticle(double m, double d) throws Exception { //with an exception so the mass is always positive (a physical particle)
+	public FallingParticle(double m, double d) throws Exception { //with an exception so the mass is always positive (a physical particle
+
 		this.m = m;
 		this.d = d;
-		if (m<0) {
-			throw new Exception("Fail to construct particle, input a positive mass");
+		if (m<0.0) {
+			throw new Exception ("Fail to construct particle, input a positive mass");
 		}
 		t = 0; //initialising the time for a particle (this could be done outside for the constructor if there were multiple particles for instance
 	}
