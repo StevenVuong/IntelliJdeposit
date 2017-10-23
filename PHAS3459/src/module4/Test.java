@@ -35,6 +35,7 @@ public class Test {
 	 while ((line=br.readLine()) != null) {
 	 System.out.println(line);
 	 }
+	}
 
 	public static void main(String[] args) throws Exception {
 		System.out.println("pi = "+Math.PI);
