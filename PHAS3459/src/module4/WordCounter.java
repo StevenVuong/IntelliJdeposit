@@ -49,7 +49,9 @@ public class WordCounter {
 		}
 		try {
 			int brFromFile = WordCounter.countWordsInResource(
-					brFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_text.txt"));
+					brFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_text.txt")); // what file in
+																											// particular?
+
 			System.out.println("The number of words in this file is: " + brFromFile);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

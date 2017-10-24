@@ -4,7 +4,10 @@ import java.io.*;
 
 public class NumericalReader {
 
-	// public static StringBuilder stringFromKeyboard = new StringBuilder();
+	private double minValue;
+	private double maxValue;
+	private double nValues;
+	private double sumOfValues;
 
 	public static String getStringFromKeyboard() {
 		InputStreamReader r = new InputStreamReader(System.in);
@@ -13,17 +16,48 @@ public class NumericalReader {
 		String s = null;
 		try {
 			s = b.readLine();
-			System.out.println("You wronte: "+s);
-		}
-		catch (IOException e) {
+			System.out.println("You wronte: " + s);
+		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
 		return s;
 	}
 
+	public BufferedReader brFromURL(String urlName) throws Exception {
+		return WordCounter.brFromURL(urlName);
+	}
+
+	void analysisStart(String dataFile) { // creates new file called data file
+		try {
+			File file = new File("c:\\dataFile.file"); // does this actually create a file?
+
+			if (file.createNewFile()) {
+				System.out.println("File is created!");
+			} else {
+				System.out.println("File already exists.");
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			// initialises variables
+			minValue = 0;
+			maxValue = 0;
+			nValues = 0;
+			sumOfValues = 0;
+
+		}
+
+	}
+
+	public static BufferedReader wc;
+
 	public static void main(String[] args) {
 
 		NumericalReader nr = new NumericalReader();
+
+		String s = NumericalReader.getStringFromKeyboard(); // test
+		System.out.println("s is: " + s);
 
 	}
 
