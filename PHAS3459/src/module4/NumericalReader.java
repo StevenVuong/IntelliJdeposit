@@ -30,8 +30,8 @@ public class NumericalReader {
 	void analysisStart(String dataFile) { // creates new file called data file. Is it supposed to be a .file?
 
 		try {
-			File file = new File("c:\\dataFile.file"); // does this actually create a file?
-
+			File file = new File(dataFile); // does this actually create a file?
+			FileWriter fw = new FileWriter(file); // create the file and allows to write over it
 			if (file.createNewFile()) {
 				System.out.println("File is created!");
 			} else {
@@ -52,8 +52,23 @@ public class NumericalReader {
 	}
 
 	void analyseData(String line) {
-		line.split("\\s+"); // removes all white characters and comments? (non visible characters)
-		line.replaceAll("(?m)^[ \t]*\r?\n", ""); // removes all spaces, tabs or pipe char.. What does this actually do
+		line.trim(); // removes all trailing and leading blanks
+		if ((line.trim().isEmpty()) || line.startsWith("//")) { // check if line is empty or starts with comment line
+			return; // return is like a way of doing nothing
+		}
+		String numLine = line.replaceAll("[^0-9]+", " "); // This returns the numbers
+		String[] arrayOfStringBasedNumbers = numLine.trim().split(" "); // which returns number array
+		System.out.println("creates an array of all the numbers" + arrayOfStringBasedNumbers);
+		System.out.println("To Test");
+
+		try {
+			BufferedWriter b = new BufferedWriter(new FileWriter(line));
+			PrintWriter pw = new PrintWriter(b);
+			pw.println(arrayOfStringBasedNumbers);
+			pw.close();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
 
 	}
 
