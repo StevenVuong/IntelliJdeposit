@@ -27,7 +27,8 @@ public class NumericalReader {
 		return WordCounter.brFromURL(urlName);
 	}
 
-	void analysisStart(String dataFile) { // creates new file called data file
+	void analysisStart(String dataFile) { // creates new file called data file. Is it supposed to be a .file?
+
 		try {
 			File file = new File("c:\\dataFile.file"); // does this actually create a file?
 
@@ -47,6 +48,12 @@ public class NumericalReader {
 			sumOfValues = 0;
 
 		}
+
+	}
+
+	void analyseData(String line) {
+		line.split("\\s+"); // removes all white characters and comments? (non visible characters)
+		line.replaceAll("(?m)^[ \t]*\r?\n", ""); // removes all spaces, tabs or pipe char.. What does this actually do
 
 	}
 
