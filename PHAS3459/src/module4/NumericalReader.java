@@ -120,7 +120,7 @@ public class NumericalReader {
 
 		String empty = new String("");
 		// try {
-		 FileReader fr = new FileReader(saveFile);
+		 FileReader fr = new FileReader("fileName");
 		 BufferedReader br = new BufferedReader(fr);
 
 		while ((br = reader.readLine()) != null) {
