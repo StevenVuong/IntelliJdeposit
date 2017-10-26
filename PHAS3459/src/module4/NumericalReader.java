@@ -120,12 +120,13 @@ public class NumericalReader {
 
 		String empty = new String("");
 		// try {
-		// FileReader fr = new FileReader(fileName);
-		// BufferedReader br = new BufferedReader(fr);
+		 FileReader fr = new FileReader(saveFile);
+		 BufferedReader br = new BufferedReader(fr);
 
-		while ((empty = reader.readLine()) != null) {
+		while ((br = reader.readLine()) != null) {
 			nr.analyseData(empty); // analyse lines, check for comments etc..
 		}
+		nr.analysisEnd(); //Print everything
 		// } catch (Exception e) {
 		// e.getMessage();
 	}
