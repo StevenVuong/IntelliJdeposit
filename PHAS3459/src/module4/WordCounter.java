@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class WordCounter {
-
+	
 	public static BufferedReader brFromURL(String urlName) throws FileNotFoundException, IOException {
 		URL u = new URL(urlName);
 		InputStream is = u.openStream();

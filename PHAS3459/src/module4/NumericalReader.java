@@ -11,6 +11,9 @@ public class NumericalReader {
 	private double nValues;
 	private double sumOfValues;
 
+	static String url1 = ("http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_data1.txt");
+	static String url2 = ("http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_data2.txt");
+
 	public static String getStringFromKeyboard() {
 		InputStreamReader r = new InputStreamReader(System.in);
 		BufferedReader b = new BufferedReader(r);
@@ -95,29 +98,36 @@ public class NumericalReader {
 	}
 
 	public static void main(String[] args) throws Exception {
-		
-		String line = "";
-		// String empty = new String("");
-		
+
 		String saveDir = NumericalReader.getStringFromKeyboard(); // allows user to specify the save Directory
-		while (saveDir.trim().isEmpty()) { // check if line is empty
-			String saveDir = new String(System.getProperty("user.home"));
+		if (saveDir.trim().isEmpty()) { // check if line is empty
+			saveDir = new String(System.getProperty("user.home"));
 		}
 
-	}System.out.println("save Directory is: "+saveDir);
+		System.out.println("save Directory is: " + saveDir);
 
-	String saveFile = (saveDir + File.separator + dataFile); // uses File.separator so user doesn't have to specify
-																// trailing slash and the end of each directory name
-	NumericalReader nr = new NumericalReader();
+		String saveFile = (saveDir + File.separator + fileName); // uses File.separator so user doesn't have to specify
+																	// trailing slash and the end of each directory name
+		NumericalReader nr = new NumericalReader();
+		BufferedReader reader = nr.brFromURL(url1); // gives Buffer Reader object from URL
+		nr.analysisStart(saveFile); // initialize minValue etc, creates a file and writes into it
 
-	BufferedReader reader = nr.brFromURL("http://foo/bar/");
-	String line = "";
+		String empty = new String("");
+		// try {
+		// FileReader fr = new FileReader(fileName);
+		// BufferedReader br = new BufferedReader(fr);
 
-	nr.analysisStart(saveFile); // initialize minValue etc.
+		while ((empty = reader.readLine()) != null) {
+			nr.analyseData(empty); // analyse lines, check for comments etc..
+		}
+		// } catch (Exception e) {
+		// e.getMessage();
+	}
 
-	String a = new String("5 0 88 9");
-	v twofoureight1;twofoureight1=new analyseData(a);b=new analyseData(a);
+	// String a = new String("5 0 88 9");
+	// v twofoureight1;twofoureight1=new analyseData(a);
+	// b=new analyseData(a);
 
 }
 
-}
+// }
