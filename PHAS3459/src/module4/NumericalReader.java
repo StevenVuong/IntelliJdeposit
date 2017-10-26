@@ -35,13 +35,14 @@ public class NumericalReader {
 	void analysisStart(String dataFile) { // creates new file called data file. Is it supposed to be a .file?
 
 		try {
-			File file = new File(dataFile); // does this actually create a file?
+			dataFile = ("C:" + File.separator + "mywork" + File.separator + "numbers.txt"); //Creates folder
+			File file = new File(dataFile); 
 			FileWriter fw = new FileWriter(file); // create the file and allows to write over it
-			if (file.createNewFile()) {
-				System.out.println("File is created!");
-			} else {
-				System.out.println("File already exists.");
-			}
+			// if (file.createNewFile()) {
+			// System.out.println("File is created!");
+			// } else {
+			// System.out.println("File already exists.");
+			// }
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -62,26 +63,27 @@ public class NumericalReader {
 			return; // return is like a way of doing nothing
 		}
 		try {
-
-			String numLine = line.replaceAll("[^0-9]+", " "); // This returns the numbers only in a line
+			String numLine = line.replaceAll("[^\\d]+", " "); // This returns the numbers only in a line
+			System.out.println(numLine);
 			// Insert numbers read in
 			double a = Double.parseDouble(numLine);
-			nValues++;
-			sumOfValues = sumOfValues + a;
-			if (a < minValue) {
-				minValue = a;
-			}
-			if (a > maxValue) {
-				maxValue = a;
+			String[] arrayOfStringBasedNumbers = numLine.trim().split(" "); // which returns number array split at
+																			// spaces
+
+			for (int i = 0; i < arrayOfStringBasedNumbers.length; i++) {
+				nValues++;
+				sumOfValues = sumOfValues + a;
+				if (a < minValue) {
+					minValue = a;
+				}
+				if (a > maxValue) {
+					maxValue = a;
+				}
 			}
 
-			String[] arrayOfStringBasedNumbers = numLine.trim().split(" "); // which returns number array
-			System.out.println("creates an array of all the numbers" + arrayOfStringBasedNumbers);
-			System.out.println("To Test");
-
-			BufferedWriter b = new BufferedWriter(new FileWriter(line));
+			BufferedWriter b = new BufferedWriter(new FileWriter(line)); //creates a new file of name 'line' and a buffered 
 			PrintWriter pw = new PrintWriter(b);
-			pw.println(arrayOfStringBasedNumbers); // prints array of numbers to file
+			pw.println(line); // prints array of numbers to file
 			pw.close();
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
@@ -106,8 +108,10 @@ public class NumericalReader {
 
 		System.out.println("save Directory is: " + saveDir);
 
-		String saveFile = (saveDir + File.separator + fileName); // uses File.separator so user doesn't have to specify
-																	// trailing slash and the end of each directory name
+		String saveFile = (saveDir + File.separator + "number1.txt"); // uses File.separator so user doesn't have to
+																		// specify
+																		// trailing slash and the end of each directory
+																		// name
 		NumericalReader nr = new NumericalReader();
 		BufferedReader reader = nr.brFromURL(url1); // gives Buffer Reader object from URL
 		nr.analysisStart(saveFile); // initialize minValue etc, creates a file and writes into it
