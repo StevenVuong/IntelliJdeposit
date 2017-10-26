@@ -17,8 +17,8 @@ public class Alphabet {
 	}
 
 	public static StringBuilder randomString = new StringBuilder(); // initialises a string with StringBuilder
-	public static int randomSums = 0; //initialises summation of random digits
-	public static int randomExceptions = 0; //initialises counter for number of exceptions
+	public static int randomSums = 0; // initialises summation of random digits
+	public static int randomExceptions = 0; // initialises counter for number of exceptions
 
 	public static void main(String[] args) throws Exception {
 

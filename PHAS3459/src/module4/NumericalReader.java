@@ -1,14 +1,13 @@
 package module4;
 
 import java.io.*;
-
-import module1.AlgorithmControl;
+import java.util.Scanner;
 
 public class NumericalReader {
 
 	private double minValue;
 	private double maxValue;
-	private double nValues;
+	private static double nValues;
 	private double sumOfValues;
 
 	static String url1 = ("http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_data1.txt");
@@ -35,8 +34,8 @@ public class NumericalReader {
 	void analysisStart(String dataFile) { // creates new file called data file. Is it supposed to be a .file?
 
 		try {
-			dataFile = ("C:" + File.separator + "mywork" + File.separator + "numbers.txt"); //Creates folder
-			File file = new File(dataFile); 
+		//	dataFile = ("C:" + File.separator + "mywork" + File.separator + dataFile); // Creates folder
+			File file = new File(dataFile);
 			FileWriter fw = new FileWriter(file); // create the file and allows to write over it
 			// if (file.createNewFile()) {
 			// System.out.println("File is created!");
@@ -59,32 +58,35 @@ public class NumericalReader {
 
 	void analyseData(String line) {
 		line.trim(); // removes all trailing and leading blanks
-		if ((line.trim().isEmpty()) || line.startsWith("//")) { // check if line is empty or starts with comment line
+		if ((line.trim().isEmpty()) || line.startsWith("//") || !Character.isDigit(line.charAt(0))) { // check if line
+																										// is empty or
+																										// starts with
+																										// comment line
 			return; // return is like a way of doing nothing
 		}
 		try {
-			String numLine = line.replaceAll("[^\\d]+", " "); // This returns the numbers only in a line
-			System.out.println(numLine);
-			// Insert numbers read in
-			double a = Double.parseDouble(numLine);
-			String[] arrayOfStringBasedNumbers = numLine.trim().split(" "); // which returns number array split at
-																			// spaces
 
-			for (int i = 0; i < arrayOfStringBasedNumbers.length; i++) {
+			Scanner charNum = new Scanner(line); // Breaks down line into individual character strings
+			while (charNum.hasNextDouble()) {
+
+				System.out.println(charNum); // printing our values
+				BufferedWriter b = new BufferedWriter(new FileWriter("fileName")); // creates a new file of name
+																					// fileName
+				PrintWriter pw = new PrintWriter(b);
+				pw.println(charNum); // prints array of numbers to file
+				pw.close();
+				// updating our values
 				nValues++;
-				sumOfValues = sumOfValues + a;
-				if (a < minValue) {
-					minValue = a;
+				double numm = charNum.nextDouble();
+				sumOfValues = sumOfValues + numm;
+				if (numm < minValue) {
+					minValue = numm;
 				}
-				if (a > maxValue) {
-					maxValue = a;
+				if (numm > maxValue) {
+					maxValue = numm;
 				}
 			}
 
-			BufferedWriter b = new BufferedWriter(new FileWriter(line)); //creates a new file of name 'line' and a buffered 
-			PrintWriter pw = new PrintWriter(b);
-			pw.println(line); // prints array of numbers to file
-			pw.close();
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
@@ -108,7 +110,7 @@ public class NumericalReader {
 
 		System.out.println("save Directory is: " + saveDir);
 
-		String saveFile = (saveDir + File.separator + "number1.txt"); // uses File.separator so user doesn't have to
+		String saveFile = (saveDir + File.separator + "fileName"); // uses File.separator so user doesn't have to
 																		// specify
 																		// trailing slash and the end of each directory
 																		// name
