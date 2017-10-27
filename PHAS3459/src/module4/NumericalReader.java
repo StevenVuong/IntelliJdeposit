@@ -33,11 +33,11 @@ public class NumericalReader {
 		return s;
 	}
 
-	public BufferedReader brFromURL(String urlName) throws Exception { //non static method which uses method from WordCounter class to return bufferedReader object from URL input
+	public BufferedReader brFromURL(String urlName) throws Exception { //non-static method which uses method from WordCounter class to return bufferedReader object from URL input
 		return WordCounter.brFromURL(urlName);
 	}
 
-	void analysisStart(String dataFile) {
+	void analysisStart(String dataFile) { //non-static method which creates a file of the name of the dataFile and initialises variables
 		this.fileName = dataFile; //sets fileName variable as the input string
 		try {
 			
@@ -46,39 +46,37 @@ public class NumericalReader {
 		} finally {
 			
 			// initialises variables
-			minValue = 1000; // sets high minimum value to be over-ridden
+			minValue = 1000; // sets high minimum value to be overridden
 			maxValue = 0;
 			nValues = 0;
 			sumOfValues = 0;
+			
 		}
 
 	}
 
-	void analyseData(String line) {
+	void analyseData(String line) { //non-static method with string input
 		line.trim(); // removes all trailing and leading blanks
-		if ((line.trim().isEmpty()) || line.startsWith("//") || !Character.isDigit(line.charAt(0))) { // check if line
-																										// is empty or
-																										// starts with
-																										// comment line
+		if ((line.trim().isEmpty()) || line.startsWith("//") || !Character.isDigit(line.charAt(0))) { // check if line is empty or starts with comment line
 			return; // returns nothing here
 		}
 		try {
 			Scanner charNum = new Scanner(line); // Breaks down line into individual character strings
-			while (charNum.hasNextDouble()) {
-				double numm = charNum.nextDouble();
-				System.out.println(numm); // printing our values
-				this.fw = fw;
+			while (charNum.hasNextDouble()) { //sets condition for while loop
+				double numm = charNum.nextDouble(); //converts the character into double
+				System.out.println(numm); // prints number to screen
+				this.fw = fw; //sets variables again
 				this.pw = pw;
 
 				pw.println(numm + "\n"); // prints number to file
 
 				// updating our values
-				nValues++;
-				sumOfValues = sumOfValues + numm;
-				if (numm < minValue) {
+				nValues++; //increase counter increment by one
+				sumOfValues = sumOfValues + numm; //sums values
+				if (numm < minValue) { //sets condition for minimum value
 					minValue = numm;
 				}
-				if (numm > maxValue) {
+				if (numm > maxValue) { //sets condition for maximum value
 					maxValue = numm;
 				}
 
@@ -91,40 +89,41 @@ public class NumericalReader {
 	}
 
 	void analysisEnd() {
+		//printing all the values now set
 		System.out.println("the maximum value is: " + maxValue);
 		System.out.println("the minimum value is: " + minValue);
 		System.out.println("the total number of values read is: " + nValues);
-		double average = sumOfValues / nValues;
+		double average = sumOfValues / nValues; //calculates the average value
 		System.out.println("the average value is: " + average);
-		pw.close();
+		pw.close(); //closes the printWriter stream so a new line can be written on
 	}
 
 	public static void main(String[] args) throws Exception {
+		
 
 		String saveDir = NumericalReader.getStringFromKeyboard(); // allows user to specify the save Directory
 		if (saveDir.trim().isEmpty()) { // check if line is empty
-			saveDir = new String(System.getProperty("user.home"));
+			saveDir = new String(System.getProperty("user.home")); //sets default as home directory if no input has been specified
 		}
 
-		System.out.println("save Directory is: " + saveDir);
+		System.out.println("save Directory is: " + saveDir); //prints the save directory
 
-		String saveFile = (saveDir + File.separator + "numbers1.txt"); // creates file name uses File.separator so user
+		String saveFile = (saveDir + File.separator + "numbers1.txt"); // creates file name & uses File.separator so user
 																		// doesn't have to specify trailing slash and
 																		// the end of each directory name
-
+		
 		NumericalReader nr = new NumericalReader(); // creates object of the class
-		BufferedReader reader = nr.brFromURL(url1); // gives Buffer Reader object from URL
-
+		BufferedReader reader = nr.brFromURL(url1); // sets Buffer Reader object from URL
 		nr.analysisStart(saveFile); // initialize minValue etc, creates a file and writes into it, renames the file
-		FileWriter fw = new FileWriter(saveFile); // opens stream
+		
+		FileWriter fw = new FileWriter(saveFile); // opens stream to write into file
+		BufferedWriter b = new BufferedWriter(fw); // creates bufferedWriter object
+		nr.pw = new PrintWriter(b); //sets the printWriter to write in the BufferedWriter we just created
 
-		BufferedWriter b = new BufferedWriter(fw); // creates a new file of name fileName
-		nr.pw = new PrintWriter(b);
-
-		String empty = new String("");
+		String empty = new String(""); //initialises String
 
 		while ((empty = reader.readLine()) != null) {
-			nr.analyseData(empty); // analyse lines, check for comments etc..
+			nr.analyseData(empty); // analyse lines, check for comments etc.., essentially calls printWriter
 		}
 		nr.analysisEnd(); // Print everything
 
