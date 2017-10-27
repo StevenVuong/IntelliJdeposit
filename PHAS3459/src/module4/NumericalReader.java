@@ -34,23 +34,20 @@ public class NumericalReader {
 	void analysisStart(String dataFile) { // creates new file called data file. Is it supposed to be a .file?
 
 		try {
-		//	dataFile = ("C:" + File.separator + "mywork" + File.separator + dataFile); // Creates folder
+			// dataFile = ("C:" + File.separator + "mywork" + File.separator + dataFile);
 			File file = new File(dataFile);
 			FileWriter fw = new FileWriter(file); // create the file and allows to write over it
-			// if (file.createNewFile()) {
-			// System.out.println("File is created!");
-			// } else {
-			// System.out.println("File already exists.");
-			// }
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
 			// initialises variables
-			minValue = 0;
+			minValue = 1000; // sets high minimum value to be over-ridden
 			maxValue = 0;
 			nValues = 0;
 			sumOfValues = 0;
+			PrintWriter pw;
+			FileWriter fw;
 
 		}
 
@@ -65,19 +62,18 @@ public class NumericalReader {
 			return; // return is like a way of doing nothing
 		}
 		try {
-
 			Scanner charNum = new Scanner(line); // Breaks down line into individual character strings
 			while (charNum.hasNextDouble()) {
-
-				System.out.println(charNum); // printing our values
+				double numm = charNum.nextDouble();
+				System.out.println(numm); // printing our values
 				BufferedWriter b = new BufferedWriter(new FileWriter("fileName")); // creates a new file of name
 																					// fileName
 				PrintWriter pw = new PrintWriter(b);
-				pw.println(charNum); // prints array of numbers to file
-				pw.close();
+				pw.println(numm); // prints number to file
+
 				// updating our values
 				nValues++;
-				double numm = charNum.nextDouble();
+
 				sumOfValues = sumOfValues + numm;
 				if (numm < minValue) {
 					minValue = numm;
@@ -85,6 +81,7 @@ public class NumericalReader {
 				if (numm > maxValue) {
 					maxValue = numm;
 				}
+				pw.close();
 			}
 
 		} catch (IOException e) {
@@ -110,31 +107,22 @@ public class NumericalReader {
 
 		System.out.println("save Directory is: " + saveDir);
 
-		String saveFile = (saveDir + File.separator + "fileName"); // uses File.separator so user doesn't have to
+		String saveFile = (saveDir + File.separator + "numbers1.txt"); // uses File.separator so user doesn't have to
 																		// specify
 																		// trailing slash and the end of each directory
 																		// name
 		NumericalReader nr = new NumericalReader();
 		BufferedReader reader = nr.brFromURL(url1); // gives Buffer Reader object from URL
+
 		nr.analysisStart(saveFile); // initialize minValue etc, creates a file and writes into it
 
 		String empty = new String("");
-		// try {
-		 FileReader fr = new FileReader("fileName");
-		 BufferedReader br = new BufferedReader(fr);
 
-		while ((br = reader.readLine()) != null) {
+		while ((empty = reader.readLine()) != null) {
 			nr.analyseData(empty); // analyse lines, check for comments etc..
 		}
-		nr.analysisEnd(); //Print everything
-		// } catch (Exception e) {
-		// e.getMessage();
+		nr.analysisEnd(); // Print everything
+
 	}
 
-	// String a = new String("5 0 88 9");
-	// v twofoureight1;twofoureight1=new analyseData(a);
-	// b=new analyseData(a);
-
 }
-
-// }

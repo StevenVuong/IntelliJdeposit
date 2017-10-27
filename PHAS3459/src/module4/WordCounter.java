@@ -1,25 +1,25 @@
 package module4;
 
-import java.io.*;
+import java.io.*; //import necessary features
 import java.net.URL;
 import java.util.Scanner;
 
 public class WordCounter {
 	
-	public static BufferedReader brFromURL(String urlName) throws FileNotFoundException, IOException {
-		URL u = new URL(urlName);
-		InputStream is = u.openStream();
+	public static BufferedReader brFromURL(String urlName) throws FileNotFoundException, IOException { //creates static method for returning buffered reader from URL string with exception for error
+		URL u = new URL(urlName); //creates URL object
+		InputStream is = u.openStream(); //effectively searches for the url
 		InputStreamReader isr = new InputStreamReader(is);
-		BufferedReader b = new BufferedReader(isr);
+		BufferedReader b = new BufferedReader(isr); //sets the buffered reader as the inputStreamReader
 		return b;
 	}
 
-	public static BufferedReader brFromFile(String fileName) throws IOException {
-		File u = new File(fileName);
-		FileReader isr = new FileReader(u);
-		BufferedReader b = new BufferedReader(isr);
+	public static BufferedReader brFromFile(String fileName) throws IOException { //creates static method for returning buffered reader from fileName
+		File u = new File(fileName); //creates new file
+		FileReader isr = new FileReader(u); //searches for file
+		BufferedReader b = new BufferedReader(isr); //creates buffered reader object
 		return b;
-		// return new BufferedReader(new FileReader(fileName));
+
 	}
 
 	public static int countWordsInResource(BufferedReader dataAsBR) {
