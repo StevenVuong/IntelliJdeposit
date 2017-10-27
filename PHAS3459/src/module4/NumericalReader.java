@@ -38,7 +38,7 @@ public class NumericalReader {
 	}
 
 	void analysisStart(String dataFile) { //non-static method which creates a file of the name of the dataFile and initialises variables
-		this.fileName = dataFile; //sets fileName variable as the input string
+		this.fileName = dataFile; //sets fileName variable as the input string in this method
 		try {
 			
 			File file = new File(dataFile); //creates file
