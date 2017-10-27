@@ -112,20 +112,47 @@ public class NumericalReader {
 																		// doesn't have to specify trailing slash and
 																		// the end of each directory name
 		
-		NumericalReader nr = new NumericalReader(); // creates object of the class
-		BufferedReader reader = nr.brFromURL(url1); // sets Buffer Reader object from URL
-		nr.analysisStart(saveFile); // initialize minValue etc, creates a file and writes into it, renames the file
+		NumericalReader nrTextOne = new NumericalReader(); // creates object of the class
+		BufferedReader reader = nrTextOne.brFromURL(url1); // sets Buffer Reader object from URL
+		nrTextOne.analysisStart(saveFile); // initialize minValue etc, creates a file and writes into it, renames the file
 		
 		FileWriter fw = new FileWriter(saveFile); // opens stream to write into file
 		BufferedWriter b = new BufferedWriter(fw); // creates bufferedWriter object
-		nr.pw = new PrintWriter(b); //sets the printWriter to write in the BufferedWriter we just created
+		nrTextOne.pw = new PrintWriter(b); //sets the printWriter to write in the BufferedWriter we just created
 
 		String empty = new String(""); //initialises String
 
 		while ((empty = reader.readLine()) != null) {
-			nr.analyseData(empty); // analyse lines, check for comments etc.., essentially calls printWriter
+			nrTextOne.analyseData(empty); // analyse lines, check for comments etc.., essentially calls printWriter
 		}
-		nr.analysisEnd(); // Print everything
+		nrTextOne.analysisEnd(); // Print everything
+
+
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//Repeats for the second URL
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		String saveFile2 = (saveDir + File.separator + "numbers2.txt"); // creates file name & uses File.separator so user
+		// doesn't have to specify trailing slash and
+		// the end of each directory name
+		
+		NumericalReader nrTextTwo = new NumericalReader(); // creates object of the class
+		BufferedReader reader2 = nrTextOne.brFromURL(url2); // sets Buffer Reader object from URL
+		nrTextTwo.analysisStart(saveFile2); // initialize minValue etc, creates a file and writes into it, renames the file
+		
+		FileWriter fw2 = new FileWriter(saveFile2); // opens stream to write into file
+		BufferedWriter b2 = new BufferedWriter(fw2); // creates bufferedWriter object
+		nrTextTwo.pw = new PrintWriter(b2); //sets the printWriter to write in the BufferedWriter we just created
+
+		String empty2 = new String(""); //initialises String
+
+		while ((empty2 = reader2.readLine()) != null) {
+			nrTextTwo.analyseData(empty2); // analyse lines, check for comments etc.., essentially calls printWriter
+		}
+		nrTextTwo.analysisEnd(); // Print everything
+		
+		
+		
 
 	}
 
