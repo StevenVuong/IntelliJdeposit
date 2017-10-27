@@ -26,7 +26,7 @@ public class WordCounter {
 		return b;
 
 	}
-
+//
 	public static int countWordsInResource(BufferedReader dataAsBR) { // creates static method for counting words in a
 																		// file
 		int count = 0; // initialises counter
