@@ -21,17 +21,17 @@ public class Test2 {
 //		}
 //		System.out.println("Thank you!");
 //	
-	
 
-	  
-	 System.out.println("Please type something!");
-	  try {
-	    String s = b.readLine();
-	    System.out.println("You typed: "+s);
+
+		System.out.println("Please type something!");
+/*	  try {
+//	    String s = b.readLine();
+//	    System.out.println("You typed: "+s);
 	  }
 	  catch (IOException e) {
 	    System.out.println("Problem: "+e.getMessage());
-	  }
+	  }*/
+	}
 }
 
 //	//adding all numbers in text
