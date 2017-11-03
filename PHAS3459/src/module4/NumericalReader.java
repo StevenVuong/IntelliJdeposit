@@ -16,7 +16,7 @@ public class NumericalReader {
 	FileWriter fw;
 
 	//creates strings for each URL
-	static String url1 = ("http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_data1.txt");
+	static String url1 = ("http://www.hep.ucl.ac.uk/undergrad/3459/data-extra/module4/module4_data3.txt");
 	static String url2 = ("http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_data2.txt");
 
 	public static String getStringFromKeyboard() { //creates method which inputs keyboard text and returns the string
@@ -57,11 +57,11 @@ public class NumericalReader {
 
 	void analyseData(String line) { //non-static method with string input
 		line.trim(); // removes all trailing and leading blanks
-		if ((line.trim().isEmpty()) || line.startsWith("//") || !Character.isDigit(line.charAt(0))) { // check if line is empty or starts with comment line
+		if ((line.trim().isEmpty()) || line.startsWith("//") || Character.isLetter(line.charAt(0))) { // check if line is empty or starts with comment line
 			return; // returns nothing here
 		}
 		try {
-			Scanner charNum = new Scanner(line); // Breaks down line into individual character strings
+			Scanner charNum = new Scanner(line); // Breaks down line into individual character strings (Tokens)
 			while (charNum.hasNextDouble()) { //sets condition for while loop
 				double numm = charNum.nextDouble(); //converts the character into double
 				System.out.println(numm); // prints number to screen

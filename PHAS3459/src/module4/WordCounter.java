@@ -5,8 +5,8 @@ import java.net.URL;
 import java.util.Scanner;
 
 public class WordCounter {
-
-	private static String urlText = ("http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_text.txt"); // creates string of text file for this class
+	// creates string of text file for this class
+	private static String urlText = ("http://www.hep.ucl.ac.uk/undergrad/3459/data/module4/module4_text.txt"); 	
 	private static String fileDirectory = ("C:\\Users\\Steven Vuong\\Downloads\\module4_text.txt"); // creates string of fileDirectory for this class
 
 	public static BufferedReader brFromURL(String urlName) throws FileNotFoundException, IOException { // creates static method for returning buffered reader from
