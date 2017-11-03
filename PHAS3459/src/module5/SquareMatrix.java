@@ -5,7 +5,7 @@ import java.util.*;
 
 public class SquareMatrix {
 
-	private double[][] matrix; // creates matrix
+	double[][] matrix; // creates matrix
 
 	public SquareMatrix(double[][] elements) throws Exception { // creates constructor for 2d array
 		this.matrix = elements;
@@ -47,68 +47,69 @@ public class SquareMatrix {
 			return false;
 		return true;
 	}
-	
-	public static SquareMatrix add(SquareMatrix sm1, SquareMatrix sm2) throws Exception { //adds both matrices together
+
+	public static SquareMatrix add(SquareMatrix sm1, SquareMatrix sm2) throws Exception { // adds both matrices together
 		double[][] rows = sm1.matrix;
 		double[][] columns = sm2.matrix;
-		
-		//compare the two matrices are of the same size
+
+		// compare the two matrices are of the same size
 		if (rows.length != columns.length || Array.getLength(rows[0]) != Array.getLength(columns[0])) {
-			throw new Exception ("The two arrays are of different size!");
+			throw new Exception("The two arrays are of different size!");
 		}
-		
-		double [][] newMatrix = new double[rows.length][columns.length]; //creates output array
-		for (int i=0; i<newMatrix.length;i++) {
-			for (int j=0; j< Array.getLength(newMatrix[0]); j++) {
-				newMatrix[i][j] = rows[i][j] + columns[i][j]; 
+
+		double[][] newMatrix = new double[rows.length][columns.length]; // creates output array
+		for (int i = 0; i < newMatrix.length; i++) {
+			for (int j = 0; j < Array.getLength(newMatrix[0]); j++) {
+				newMatrix[i][j] = rows[i][j] + columns[i][j];
 			}
 		}
-		
+
 		return new SquareMatrix(newMatrix);
-		
-	}
-	
-	public static SquareMatrix subtract(SquareMatrix sm1, SquareMatrix sm2) throws Exception { //subtracts one matrix from another
-		double[][] rows = sm1.matrix;
-		double[][] columns = sm2.matrix;
-		
-		//compare the two matrices are of the same size
-		if (rows.length != columns.length || Array.getLength(rows[0]) != Array.getLength(columns[0])) {
-			throw new Exception ("The two arrays are of different size!");
-		}
-		
-		double [][] newMatrix = new double[rows.length][columns.length]; //creates output array
-		for (int i=0; i<newMatrix.length;i++) {
-			for (int j=0; j<Array.getLength(newMatrix[0]); j++) {
-				newMatrix[i][j] = rows[i][j] - columns[i][j]; 
-			}
-		}
-		
-		return new SquareMatrix(newMatrix);
-		
+
 	}
 
-	public static SquareMatrix multiply(SquareMatrix sm1, SquareMatrix sm2) throws Exception { //multiplies two arrays together
+	public static SquareMatrix subtract(SquareMatrix sm1, SquareMatrix sm2) throws Exception { // subtracts one matrix
+																								// from another
 		double[][] rows = sm1.matrix;
 		double[][] columns = sm2.matrix;
-		
-		if (rows.length != Array.getLength(columns[0])) {
-			throw new Exception ("The arrays are incompatible size for multiplication!");
+
+		// compare the two matrices are of the same size
+		if (rows.length != columns.length || Array.getLength(rows[0]) != Array.getLength(columns[0])) {
+			throw new Exception("The two arrays are of different size!");
 		}
-		
-		double [][] newMatrix = new double[rows.length][columns.length]; //creates output array
-		
-		for (int i=0; i < newMatrix.length;i++) {
-			for (int j=0; j < Array.getLength(newMatrix[0]); j++ ) {
-				double p = 0.;
-				for (int k=0; k < columns.length; k++) {
-					newMatrix[i][j] = rows[i][k]
-				}
+
+		double[][] newMatrix = new double[rows.length][columns.length]; // creates output array
+		for (int i = 0; i < newMatrix.length; i++) {
+			for (int j = 0; j < Array.getLength(newMatrix[0]); j++) {
+				newMatrix[i][j] = rows[i][j] - columns[i][j];
 			}
 		}
-		
-		
-		
+
+		return new SquareMatrix(newMatrix);
+
+	}
+
+	public static SquareMatrix multiply(SquareMatrix sm1, SquareMatrix sm2) throws Exception { // multiplies two arrays
+																								// together
+		double[][] rows = sm1.matrix;
+		double[][] columns = sm2.matrix;
+
+		if (rows.length != Array.getLength(columns[0])) {
+			throw new Exception("The arrays are incompatible size for multiplication!");
+		}
+
+		double[][] newMatrix = new double[rows.length][columns.length]; // creates output array
+
+		for (int i = 0; i < newMatrix.length; i++) {
+			for (int j = 0; j < Array.getLength(newMatrix[0]); j++) {
+				double l = 0.;
+				for (int k = 0; k < newMatrix.length; k++) { //multiply elements according to standard matrix multiplication
+					l += rows[i][k] * columns[k][j]; 
+				}
+				newMatrix[i][j] = l; //puts result into output matrix
+			}
+		}
+
 		return new SquareMatrix(newMatrix);
 	}
 }
