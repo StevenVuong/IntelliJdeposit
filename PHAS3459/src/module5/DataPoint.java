@@ -30,7 +30,7 @@ public class DataPoint {
 		return new DataPoint(X, Y, EY);
 	}
 
-	// getter methods for member variables
+	// getter methods for member variables of objects
 	public double getX() {
 		return this.x;
 	}
