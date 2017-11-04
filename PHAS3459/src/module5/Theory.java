@@ -8,6 +8,7 @@ public class Theory {
 	private double n;
 	private double x;
 	private double y;
+	private ArrayList<Double> yPoints;
 
 	//constructor for variables
 	public Theory(double n) {
@@ -23,4 +24,13 @@ public class Theory {
 	
 	}
 
+	public ArrayList<Double> theoreticalYPoints(ArrayList<Double> xpoints){
+		//creates an array of theoretical y points for the method above
+		
+		this.yPoints = new ArrayList<Double>();
+		for (int i=0; i<xpoints.size(); i++) { //calc x^n and put into yPoints array
+			this.yPoints.add(y(xpoints.get(i)));
+		}
+		return yPoints;
+	}
 }

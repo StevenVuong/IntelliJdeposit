@@ -24,6 +24,6 @@ public class DataAnalysis {
 	public static double goodnessOfFit(Theory t, ArrayList<DataPoint> dataPoint) {
 		
 		
-		return null;
+		return (Double) null; //
 	}
 }
