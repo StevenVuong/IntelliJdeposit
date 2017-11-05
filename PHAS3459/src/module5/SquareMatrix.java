@@ -1,5 +1,5 @@
 package module5;
-
+//import necessary modules
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -35,7 +35,7 @@ public class SquareMatrix {
 		return out;
 	}
 
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj) { //creates boolean with conditions if one matrix is equal to another (identity)
 		if (this.matrix == obj)
 			return true;
 		if (obj == null)
