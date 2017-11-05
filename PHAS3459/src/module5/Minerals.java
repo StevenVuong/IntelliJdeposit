@@ -68,7 +68,7 @@ public class Minerals {
 		return masses;
 	}
 
-	public static HashMap<String, Integer> locFromURL(String urlName) throws IOException {
+	public static HashMap<Integer, String> locFromURL(String urlName) throws IOException {
 		// Creates Hashmap object for locations from text input URL
 
 		// turns url string into buffered reader object
@@ -77,11 +77,11 @@ public class Minerals {
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader b = new BufferedReader(isr);
 
-		HashMap<String, Integer> loc = new HashMap<String, Integer>(); // Defines Hashmap containing sample locations
+		HashMap<Integer, String> loc = new HashMap<Integer, String>(); // Defines Hashmap containing sample locations
 		String empty = "";
 		while ((empty = b.readLine()) != null) { // take object from each line and store inside hashmap
 			Minerals sample = parseLocationLine(empty);
-			loc.put(sample.location, sample.key);
+			loc.put(sample.key, sample.location);
 		}
 		return loc;
 	}
@@ -92,7 +92,7 @@ public class Minerals {
 			// Import URL data
 			HashMap<Integer, Double> masses = new HashMap<Integer, Double>(
 					massFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module5/module5-samples.txt"));
-			HashMap<String, Integer> locations = new HashMap<String, Integer>(
+			HashMap<Integer, String> locations = new HashMap<Integer, String>(
 					locFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module5/module5-locations.txt"));
 
 			double[] hashMasses = new double[masses.size()]; // Initialise array containing masses
