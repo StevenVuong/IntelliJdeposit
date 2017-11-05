@@ -86,7 +86,7 @@ public class Minerals {
 		return loc;
 	}
 
-	public static void mail(String[] args) {
+	public static void main(String[] args) {
 		try {
 
 			// Import URL data
@@ -127,6 +127,7 @@ public class Minerals {
 			}
 			
 			System.out.println("The largest mass sample has code number: " + maxKey+" with mass: "+masses.get(maxKey) +", found at location: " +locations.get(maxKey));
+			System.out.println("The smallest mass sample has code number: " + minKey+" with mass: "+masses.get(minKey) +", found at location: " +locations.get(minKey));
 
 		} catch (IOException e) {
 			System.out.println("Bad URL");
