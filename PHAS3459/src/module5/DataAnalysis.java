@@ -22,8 +22,40 @@ public class DataAnalysis {
 	}
 	
 	public static double goodnessOfFit(Theory t, ArrayList<DataPoint> dataPoint) {
+		//returns chi^2 value for a set of x, y and y uncertainty values
 		
+		ArrayList<Double> xpoints = new ArrayList<Double>(); //creates a new set of array lists for analysis
+		ArrayList<Double> ypoints = new ArrayList<Double>();
+		ArrayList<Double> eypoints = new ArrayList<Double>();
 		
-		return (Double) null; //
+		for (int i = 0; i < dataPoint.size(); i++) {
+			xpoints.add(dataPoint.get(i).getX()); // Put original data into ArrayList objects defined above
+			ypoints.add(dataPoint.get(i).getY());
+			eypoints.add(dataPoint.get(i).getEy());
+		}
+		ArrayList<Double> yPointsTh = t.theoreticalYPoints(xpoints); //calculate theoretical y-points
+		
+		double chiSqTotal = 0; //initialise chi square
+		
+		for (int i=0; i < dataPoint.size(); i++) {
+			chiSqTotal += Math.pow(yPointsTh.get(i)-ypoints.get(i),2)/(Math.pow(eypoints.get(i), 2)); //calculate chi-sq values for each component
+		}
+		
+		return chiSqTotal;
+	}
+	
+	public static void main(String[] args) {
+		ArrayList<DataPoint> points;
+		try {
+			points = dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/data/module5/module5-xy.txt"); //import data
+			Theory t2 = new Theory(2); //Creates theory object of n=2
+			Theory t4 = new Theory(4); //Creates new theory object of n=4
+			System.out.println("for n=2, the chiSqTotal is: " + goodnessOfFit(t2,points));
+			System.out.println("for n=4, the chiSqTotal is: " + goodnessOfFit(t4,points));
+		}
+		catch (IOException e) {
+			System.out.println(e);
+		}
+		System.out.println("The chiSq Total for n=4 is much less than n=2 so is more likely to fit the data, hence better describes it.");
 	}
 }
