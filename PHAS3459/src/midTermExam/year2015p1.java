@@ -39,10 +39,10 @@ public class year2015p1 {
 
 		mult.close(); // Close scanner
 		//output as a new object containing all of the data, filtering out error data
-		if (az == -1) { //error condition, as when az is an error, the entire row is an error (including eh1, eh2 and ez)
-		//throw new Exception ("bad data");
-		return null; 
-		}
+//		if (az == -1) { //error condition, as when az is an error, the entire row is an error (including eh1, eh2 and ez)
+//		//throw new Exception ("bad data");
+//		return null; 
+//		}
 
 		return new Earthquake(year, month, day, hour, minute, second, lat, lon, depth, eh1, eh2, az, ez, mag, id); 
 
@@ -78,30 +78,51 @@ public class year2015p1 {
 
         ArrayList<Earthquake> eqInMonth = new ArrayList<Earthquake>();
         ArrayList<Earthquake> allEarthquakes = dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2015-16/earthquakesCA1989.txt"); //retrieve URL data
+        
+        //initialise variables 
         double depth = 0;
 		String detailsEarthquakesMonth= "";
 		String errorEarthquakeMonth = "";
 		Earthquake greatestDepthEq = null;
+		
+		//initialise variables for depth error (ez)
+		double depthErr = 200.000;
+		String detailsEarthquakesMonthErr= "";
+		String errorEarthquakeMonthErr = "";
+		Earthquake greatestDepthEqErr = null;
+		
         for (Earthquake eq : allEarthquakes) {
         	if (eq != null) {
         		if (eq.Month ==  month) {
         			eqInMonth.add(eq);
         		}
-        		if (eq.Dep > depth) {
-        			greatestDepthEq = eq;
-					depth = eq.Dep;
-					detailsEarthquakesMonth = eq.getDetails();
-					errorEarthquakeMonth = eq.getErrors();
+        		for (Earthquake eqMonth : eqInMonth) {
+        			if (eqMonth.Dep > depth) {
+        				greatestDepthEq = eq;
+        				depth = eqMonth.Dep;
+        				detailsEarthquakesMonth = eqMonth.getDetails();
+        				errorEarthquakeMonth = eqMonth.getErrors();
+        			}
+        			if (eqMonth.Ez < depthErr) {
+        				greatestDepthEqErr = eq;
+        				depthErr = eqMonth.Ez;
+        				detailsEarthquakesMonthErr = eqMonth.getDetails();
+        				errorEarthquakeMonthErr = eqMonth.getErrors();
+        			}
         		}
         	}
         	
         }
         System.out.println("Month: "+month);
+        //depths
         System.out.println("There are " + eqInMonth.size() +" number of earthquakes.");
 		System.out.println("The earthquake with the greatest depth has details: " + detailsEarthquakesMonth);
 		System.out.println("The errors for the greatest depth earthquake has details: " + errorEarthquakeMonth);
+		//depth errors
+//		System.out.println("The earthquake with the smallest depth error has details: " + detailsEarthquakesMonthErr);
+//		System.out.println("The errors for the smallest depth error earthquake has details: " + errorEarthquakeMonthErr);
 		System.out.println("");
-		
+//		
 		return eqInMonth; //returns array list for specific month
     }
 	
@@ -133,7 +154,7 @@ public class year2015p1 {
 		
 		System.out.println("");
 		System.out.println("The earthquake with the greatest magnitude has details: " + detailsGreatestMagnitude);
-		System.out.println("The errors for the greatest magnitude earthquake has details: " + errorGreatestMagnitude);
+//		System.out.println("The errors for the greatest magnitude earthquake has details: " + errorGreatestMagnitude);
 		System.out.println("");
 		for (Earthquake eq2: allEarthquakes) { //loops over all earthquakes
 			
