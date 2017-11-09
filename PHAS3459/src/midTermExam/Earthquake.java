@@ -2,6 +2,7 @@ package midTermExam;
 
 	public class Earthquake {
 
+
 		//initialise member variables
 		int Year, Month, Day, Hour, Min, Az, Id;
 		double Second, Lat, Lon, Dep, EH1, EH2, Ez, Mag;
@@ -25,5 +26,19 @@ package midTermExam;
 			this.Id = Id;
 			
 		}
+		
+		public double getMag() {
+			return Mag;
+		}
+		
+		public String getDetails() {
+			return ("Date: "+Day + "/" + Month + "/" + Year + " at " + Hour + "h:" + Min + "mins:" + Second + "s at lat: " + Lat + " and Long: " + Lon + " with magnitude: " + Mag + " and ID: " + Id);
+		}
+		
+		public String getErrors() { 
+			return ("EH1 is: " + EH1 +",  EH2 is: " + EH2 + ", AZ is: " + Az + ", and EZ is: " + Ez);
+		}
+
+
 	}
 

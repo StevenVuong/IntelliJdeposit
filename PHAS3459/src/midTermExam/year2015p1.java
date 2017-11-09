@@ -7,12 +7,14 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.HashMap;
+import java.util.List;
 
 public class year2015p1 {
 
-	public static Earthquake parseLine(String line) {
+	public static Earthquake parseLine(String line) throws Exception {
 		// Return a Earthquake object containing all the data of one Earthquake.
 		Scanner mult = new Scanner(line);
 		//mult.useDelimiter("\t"); // Set up new scanner to analyse multiple numbers in the same line of the input
@@ -39,7 +41,7 @@ public class year2015p1 {
 		//output as a new object containing all of the data, filtering out error data
 		if (az == -1) { //error condition, as when az is an error, the entire row is an error (including eh1, eh2 and ez)
 		//throw new Exception ("bad data");
-		return null;
+		return null; 
 		}
 
 		return new Earthquake(year, month, day, hour, minute, second, lat, lon, depth, eh1, eh2, az, ez, mag, id); 
@@ -60,6 +62,7 @@ public class year2015p1 {
 		String line = ""; //initialise string so it is not null for the loop below
 		b.readLine(); // Ignore the first two lines
 		b.readLine();
+		//while (Character.isDigit(line.charAt(0));
 		while ((line = b.readLine()) != null) {
 			// Take an object created from each line and store in the ArrayList
 			earthquakes.add(parseLine(line));
@@ -70,7 +73,36 @@ public class year2015p1 {
 	}
 	
 	public static void main(String[] args) throws Exception {
+		try {
 		ArrayList<Earthquake> allEarthquakes = dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2015-16/earthquakesCA1989.txt"); //retrieve URL data
-		System.out.printf("The total number of valid earthquakes recorded in the file is %d. %n", allEarthquakes.size()); // Output total number of Earthquakes
+		System.out.printf("The total number of earthquakes recorded in the file is %d. %n", allEarthquakes.size()); // Output total number of Earthquakes
+		
+		//Initialises Hashmap to hold depth as key and array of earthquakes as variable to sort through
+		HashMap<Double, ArrayList<Earthquake>> earthquakesByDepth = new HashMap<Double, ArrayList<Earthquake>>(); 
+		//Initialise variable to hold Earthquake with greatest magnitude
+		Earthquake greatestMagEarthquake = null;
+		double magnitude = 0;
+		String detailsGreatestMagnitude = "";
+		String errorGreatestMagnitude = "";
+		for (Earthquake eq: allEarthquakes) { //loops over all earthquakes
+			if (eq != null) { //ignores null datapoints
+	
+				if (eq.Mag > magnitude) { // Update variables if this player had more home runs than the currently held MostHRs
+					greatestMagEarthquake = eq;
+					magnitude = eq.getMag();
+					detailsGreatestMagnitude = eq.getDetails();
+					errorGreatestMagnitude = eq.getErrors();
+					//System.out.println("mag is: "+magnitude+" and ID is: "+eq.Id);
+					}
+			}
+		}
+		
+		System.out.println("The earthquake with the greatest magnitude has details: " + detailsGreatestMagnitude);
+		System.out.println("The errors for the greatest magnitude earthquake has details: " + errorGreatestMagnitude);
+		
+	}
+		catch (Exception e) {
+			System.out.println(e);
+		}
 	}
 }

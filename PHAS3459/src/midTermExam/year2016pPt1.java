@@ -72,17 +72,17 @@ package midTermExam;
 						mostHRPlayer = p;
 					}
 					
-					// Sort players by team and put into the playersByTeam HashMap. 
-					if (playersByTeams.get(p.Team) == null) { // If the team has not yet been put into the HashMap, create a new ArrayList containing the current player and put it into the HashMap.
-						ArrayList<Player> temp = new ArrayList<Player>();   
-						temp.add(p);
-						playersByTeams.put(p.Team, temp); 
-					}
-					else { // The playersByTeam HashMap already contains the player's team. Retrieve the ArrayList of all players sorted so far, add the current player to the list and put the updated list back into the HashMap.
-						ArrayList<Player> currentTeam = playersByTeams.get(p.Team);
-						currentTeam.add(p);
-						playersByTeams.put(p.Team, currentTeam);
-					}
+//					// Sort players by team and put into the playersByTeam HashMap. 
+//					if (playersByTeams.get(p.Team) == null) { // If the team has not yet been put into the HashMap, create a new ArrayList containing the current player and put it into the HashMap.
+//						ArrayList<Player> temp = new ArrayList<Player>();   
+//						temp.add(p);
+//						playersByTeams.put(p.Team, temp); 
+//					}
+//					else { // The playersByTeam HashMap already contains the player's team. Retrieve the ArrayList of all players sorted so far, add the current player to the list and put the updated list back into the HashMap.
+//						ArrayList<Player> currentTeam = playersByTeams.get(p.Team);
+//						currentTeam.add(p);
+//						playersByTeams.put(p.Team, currentTeam);
+//					}
 				}
 				System.out.printf("The player with the most home runs in 2001 was %s with %d home runs, playing for team %s in position %s. %n", mostHRPlayer.playerName, mostHRs, mostHRPlayer.Team, mostHRPlayer.Pos);
 				System.out.printf("He played %d games, with %d At-Bats, %d total runs scored, %d hits, %d doubles, %d triples, a Runs Batted In figure of %.3f, a Batting Average of %.3f and an On-Base Percentage of %.3f.%n%n", mostHRPlayer.Games, mostHRPlayer.AB, mostHRPlayer.R, mostHRPlayer.H, mostHRPlayer.Doubles, mostHRPlayer.Triples, mostHRPlayer.RBI, mostHRPlayer.AVG, mostHRPlayer.OBP);
