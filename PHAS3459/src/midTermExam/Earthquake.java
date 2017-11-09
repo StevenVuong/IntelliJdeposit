@@ -27,6 +27,7 @@ package midTermExam;
 			
 		}
 		
+		//create getters
 		public double getMag() {
 			return Mag;
 		}
@@ -37,6 +38,10 @@ package midTermExam;
 		
 		public String getErrors() { 
 			return ("EH1 is: " + EH1 +",  EH2 is: " + EH2 + ", AZ is: " + Az + ", and EZ is: " + Ez);
+		}
+
+		public int getMonth() {
+			return Month;
 		}
 
 

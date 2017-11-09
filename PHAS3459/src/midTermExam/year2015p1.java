@@ -14,7 +14,7 @@ import java.util.List;
 
 public class year2015p1 {
 
-	public static Earthquake parseLine(String line) throws Exception {
+	public static Earthquake parseLine(String line) {
 		// Return a Earthquake object containing all the data of one Earthquake.
 		Scanner mult = new Scanner(line);
 		//mult.useDelimiter("\t"); // Set up new scanner to analyse multiple numbers in the same line of the input
@@ -59,12 +59,14 @@ public class year2015p1 {
 		
 		//define array list, creating array for each object
 		ArrayList<Earthquake> earthquakes = new ArrayList<Earthquake>();
+		ArrayList fileInMonth = new ArrayList<Earthquake>();
 		String line = ""; //initialise string so it is not null for the loop below
 		b.readLine(); // Ignore the first two lines
 		b.readLine();
 		//while (Character.isDigit(line.charAt(0));
 		while ((line = b.readLine()) != null) {
 			// Take an object created from each line and store in the ArrayList
+			//if(earthquake!= null){} //checks if earthquake has null data-point
 			earthquakes.add(parseLine(line));
 		}
 		
@@ -72,7 +74,30 @@ public class year2015p1 {
 		
 	}
 	
-	public static void main(String[] args) throws Exception {
+    public static ArrayList<Earthquake> getEarthquakesInMonth(int month) throws Exception{ //method which creates arraylist for each month
+
+        ArrayList<Earthquake> eqInMonth = new ArrayList<Earthquake>();
+        ArrayList<Earthquake> allEarthquakes = dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2015-16/earthquakesCA1989.txt"); //retrieve URL data
+        for (Earthquake eq : allEarthquakes) {
+        	if (eq != null) {
+            if (eq.Month ==  month) {
+                eqInMonth.add(eq);
+            }
+        	}
+        }
+        
+        System.out.println("For month: " + month + ", there are " + eqInMonth.size() +" number of earthquakes.");
+		String detailsEarthquakesMonth= "";
+		String errorEarthquakeMonth = "";
+		System.out.println("The earthquake with the greatest magnitude has details: " + detailsEarthquakesMonth);
+		System.out.println("The errors for the greatest magnitude earthquake has details: " + errorEarthquakeMonth);
+		System.out.println("");
+		
+		return eqInMonth; //returns array list for specific month
+    }
+	
+	
+	public static void main(String[] args) {
 		try {
 		ArrayList<Earthquake> allEarthquakes = dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2015-16/earthquakesCA1989.txt"); //retrieve URL data
 		System.out.printf("The total number of earthquakes recorded in the file is %d. %n", allEarthquakes.size()); // Output total number of Earthquakes
@@ -97,8 +122,17 @@ public class year2015p1 {
 			}
 		}
 		
+		System.out.println("");
 		System.out.println("The earthquake with the greatest magnitude has details: " + detailsGreatestMagnitude);
 		System.out.println("The errors for the greatest magnitude earthquake has details: " + errorGreatestMagnitude);
+		System.out.println("");
+		for (Earthquake eq2: allEarthquakes) { //loops over all earthquakes
+			
+		}
+	
+		for (int i=1; i<=12; i++) {
+			ArrayList EarthquakesForMonth = getEarthquakesInMonth(i);
+			}
 		
 	}
 		catch (Exception e) {
