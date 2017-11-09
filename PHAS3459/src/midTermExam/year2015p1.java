@@ -78,19 +78,28 @@ public class year2015p1 {
 
         ArrayList<Earthquake> eqInMonth = new ArrayList<Earthquake>();
         ArrayList<Earthquake> allEarthquakes = dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2015-16/earthquakesCA1989.txt"); //retrieve URL data
-        for (Earthquake eq : allEarthquakes) {
-        	if (eq != null) {
-            if (eq.Month ==  month) {
-                eqInMonth.add(eq);
-            }
-        	}
-        }
-        
-        System.out.println("For month: " + month + ", there are " + eqInMonth.size() +" number of earthquakes.");
+        double depth = 0;
 		String detailsEarthquakesMonth= "";
 		String errorEarthquakeMonth = "";
-		System.out.println("The earthquake with the greatest magnitude has details: " + detailsEarthquakesMonth);
-		System.out.println("The errors for the greatest magnitude earthquake has details: " + errorEarthquakeMonth);
+		Earthquake greatestDepthEq = null;
+        for (Earthquake eq : allEarthquakes) {
+        	if (eq != null) {
+        		if (eq.Month ==  month) {
+        			eqInMonth.add(eq);
+        		}
+        		if (eq.Dep > depth) {
+        			greatestDepthEq = eq;
+					depth = eq.Dep;
+					detailsEarthquakesMonth = eq.getDetails();
+					errorEarthquakeMonth = eq.getErrors();
+        		}
+        	}
+        	
+        }
+        System.out.println("Month: "+month);
+        System.out.println("There are " + eqInMonth.size() +" number of earthquakes.");
+		System.out.println("The earthquake with the greatest depth has details: " + detailsEarthquakesMonth);
+		System.out.println("The errors for the greatest depth earthquake has details: " + errorEarthquakeMonth);
 		System.out.println("");
 		
 		return eqInMonth; //returns array list for specific month
