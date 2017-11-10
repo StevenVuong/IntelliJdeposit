@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.HashMap;
 import java.util.List;
 
@@ -130,3 +131,15 @@ public class year2014 {
 	}
 	
 }
+
+//alternative method of getting a list of the keysets
+//public static Set<String> method(ArrayList<Exoplanet> exo){
+//	
+////	ArrayList<String> methods = new ArrayList<String>();
+//	HashMap<String,Exoplanet> map = new HashMap<String,Exoplanet>();
+//	for(Exoplanet ex : exo){
+//		map.put(ex.method, ex);
+//	}
+//	return map.keySet();
+//}
+//	System.out.println(method(exo)); //something for the main method
