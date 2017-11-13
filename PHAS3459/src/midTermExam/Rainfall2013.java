@@ -41,6 +41,7 @@ public class Rainfall2013 {
 		b.readLine();
 		b.readLine();
 		
+		//loops through each line and adds the data to an array for a year before adding to an array of years and their data
 		while ((line = b.readLine()) != null) {
 			if(Character.isLetter(line.charAt(0))) continue;
 			ArrayList<Double> dataLine = parseLine(line);
@@ -48,6 +49,26 @@ public class Rainfall2013 {
 		}
 		
 		return arrayOfYears;
+	}
+	
+	//finds the wettest month
+	public static void wettestMonth(ArrayList<ArrayList<Double>> arrayOfYears) {
+		
+		//initialise variables
+		double maxRain = Double.MIN_VALUE; 
+		ArrayList<Double> wettestMonthYear = new ArrayList<Double>();
+		double wettestMonth = 0.0;
+		
+		for (ArrayList<Double> yr : arrayOfYears) { //loops through each year
+			for (int i = 1; i < 13; i++) {
+				if (yr.get(i) > maxRain) {
+					maxRain = yr.get(i);
+					wettestMonthYear = yr;
+					wettestMonth = i;
+				}
+			}
+		}
+		System.out.println("Wettest Month: " + wettestMonth + "with info: " + wettestMonthYear );
 	}
 	
 }

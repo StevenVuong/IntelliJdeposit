@@ -58,7 +58,8 @@ public class year2013 {
 				double rain_val = ann.get(i);
 				if (rain_val > max_rain) {
 					max_rain = rain_val;
-					max_info = ann; max_month = i;
+					max_info = ann; 
+					max_month = i;
 				}
 			}
 		}
