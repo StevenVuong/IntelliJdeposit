@@ -9,16 +9,6 @@ import java.net.URL;
 import java.util.*;
 
 public class Rainfall2013 {
-
-	//method which creates buffered reader object from url to obtain data from
-	public static BufferedReader brFromURL(String url) throws MalformedURLException, IOException {
-		URL u = new URL(url);
-		InputStream is = u.openStream();
-		InputStreamReader isr = new InputStreamReader(is);
-		
-		return new BufferedReader(isr);
-		
-	}
 	
 	//method which parses double values from a year onto a string
 	public static ArrayList<Double> parseLine(String line){
@@ -35,5 +25,29 @@ public class Rainfall2013 {
 		
 	}
 	
+	//method which creates buffered reader object from url to obtain data from and parses into arraylist
+	public static ArrayList<ArrayList<Double>> dataFromURL(String urlName) throws Exception {
+		URL u = new URL(urlName);
+		InputStream is = u.openStream();
+		InputStreamReader isr = new InputStreamReader(is);
+		BufferedReader b = new BufferedReader(isr);
+		
+		ArrayList<ArrayList<Double>> arrayOfYears = new ArrayList<>(); //initialise array of years containing rainfall data array
+		String line = "";  // Initialise string so that it is not initially null for the while loop below
+		
+		//ignore first 4 lines
+		b.readLine();
+		b.readLine();
+		b.readLine();
+		b.readLine();
+		
+		while ((line = b.readLine()) != null) {
+			if(Character.isLetter(line.charAt(0))) continue;
+			ArrayList<Double> dataLine = parseLine(line);
+			if(!(dataLine.isEmpty())) arrayOfYears.add(dataLine);
+		}
+		
+		return arrayOfYears;
+	}
 	
 }
