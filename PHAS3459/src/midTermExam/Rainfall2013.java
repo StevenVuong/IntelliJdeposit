@@ -85,7 +85,7 @@ public class Rainfall2013 {
 				}
 			}
 		}
-		System.out.println("Wettest Month: " + wettestMonth + "with info: " + getDetails(wettestMonthYear) );
+		System.out.println("Wettest Month: " + wettestMonth + ", with info: " + getDetails(wettestMonthYear) );
 	}
 	
 	//finds the wettest & driest year for each month and calculates the total rainfall for that month and the rms value
@@ -147,6 +147,7 @@ public class Rainfall2013 {
 	
 	public static void finalYearAnalysis(ArrayList<ArrayList<Double>> data) {
 		
+		double num = data.size();
 		ArrayList<Double> finalYear = data.get((data.size() -1 )); //creates an array of final year values
 		int counter = 0;
 		
@@ -156,12 +157,10 @@ public class Rainfall2013 {
 				ArrayList<Double> year = data.get(j) ;
 				if (year.get(i) > finalYear.get(i)) { //condition to add to the counter
 					counter++;
-				}
-			}
-		
-			double percentage = (counter/(data.size())) * 100;
-			System.out.println("the percentage of previous years with greater rainfall for month: " + i + ", is " + percentage + "%");
-			
+				}		
+			}		
+			double percentage = (counter *100/ num);
+			System.out.println("\n For month: "+i+" |Percentage: "+percentage+"%");
 		}
 	}
 	
@@ -176,7 +175,9 @@ public class Rainfall2013 {
 			//runs methods
 			wettestMonth(data);
 			wettestYearEachMonth(data);
+			System.out.println("");
 			wettestThreeMonths(data);
+			System.out.println("");
 			finalYearAnalysis(dataForFinalYear);
 			
 		}
