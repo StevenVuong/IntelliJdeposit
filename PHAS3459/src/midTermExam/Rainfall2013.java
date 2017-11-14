@@ -25,6 +25,21 @@ public class Rainfall2013 {
 		
 	}
 	
+	public static String getDetails(ArrayList<Double> data) {
+		
+		StringBuilder s = new StringBuilder();
+		s.append( "\nYear: " + data.get(0));
+		
+		for (int i = 1; i < data.size() -1; i++) {
+			s.append("\nMonth: " + i + " : " + data.get(i));
+		}
+		
+		s.append( "\nAnnual: " + data.get(13));
+		
+		return s.toString();
+		
+	}
+	
 	//method which creates buffered reader object from url to obtain data from and parses into arraylist
 	public static ArrayList<ArrayList<Double>> dataFromURL(String urlName) throws Exception {
 		URL u = new URL(urlName);
@@ -68,7 +83,9 @@ public class Rainfall2013 {
 				}
 			}
 		}
-		System.out.println("Wettest Month: " + wettestMonth + "with info: " + wettestMonthYear );
+		System.out.println("Wettest Month: " + wettestMonth + "with info: " + getDetails(wettestMonthYear) );
 	}
+	
+	
 	
 }
