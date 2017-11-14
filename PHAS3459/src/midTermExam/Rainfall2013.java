@@ -90,7 +90,7 @@ public class Rainfall2013 {
 	//finds the wettest & driest year for each month and calculates the total rainfall for that month and the rms value
 	public static void wettestYearEachMonth(ArrayList<ArrayList<Double>> data) {
 		
-		for (int i = 1; i < 13; i++) {
+		for (int i = 1; i < 13; i++) { //loops through each month
 			
 			//initilaise variables
 			double maxRainfall = Double.MIN_VALUE;
@@ -98,6 +98,7 @@ public class Rainfall2013 {
 			double rainfallTotal = 0;
 			double rainfallTotalSquare = 0;
 			
+			//loops through each year and sets maximum and minimum rainfall
 			for (ArrayList<Double> annual : data) {
 				double month = annual.get(i) ;
 				if (month > maxRainfall) {
@@ -119,5 +120,8 @@ public class Rainfall2013 {
 	}
 	
 	//finds the wettest and wettest three month period and the total rainfall of this period
+	public static void wettestThreeMonths(ArrayList<ArrayList<Double>> data) {
+		
+	}
 	
 }
