@@ -8,7 +8,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
 
-public class Rainfall2013 {
+public class year2012 {
 	
 	//method which parses double values from a year onto a string
 	public static ArrayList<Double> parseLine(String line){
