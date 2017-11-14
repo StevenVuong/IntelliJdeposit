@@ -25,6 +25,7 @@ public class Rainfall2013 {
 		
 	}
 	
+	//Makes data neater.. Puts into a string with all the necessary information
 	public static String getDetails(ArrayList<Double> data) {
 		
 		StringBuilder s = new StringBuilder();
@@ -86,6 +87,37 @@ public class Rainfall2013 {
 		System.out.println("Wettest Month: " + wettestMonth + "with info: " + getDetails(wettestMonthYear) );
 	}
 	
+	//finds the wettest & driest year for each month and calculates the total rainfall for that month and the rms value
+	public static void wettestYearEachMonth(ArrayList<ArrayList<Double>> data) {
+		
+		for (int i = 1; i < 13; i++) {
+			
+			//initilaise variables
+			double maxRainfall = Double.MIN_VALUE;
+			double minRainfall = Double.MAX_VALUE;
+			double rainfallTotal = 0;
+			double rainfallTotalSquare = 0;
+			
+			for (ArrayList<Double> annual : data) {
+				double month = annual.get(i) ;
+				if (month > maxRainfall) {
+					maxRainfall = month;
+				}
+				if (month < minRainfall) {
+					minRainfall = month;
+				}
+				rainfallTotal += month;
+				rainfallTotalSquare += (month * month);
+			}
+			
+			double averageRainfall = (rainfallTotal / data.size());
+			double rmsRainfall = Math.sqrt(rainfallTotalSquare / data.size());
+			
+			System.out.println("\n for Month: " + i + ", has max rain: " + maxRainfall + ", and min rain: " + minRainfall + ", and average rain: "
+					+ averageRainfall + ", and rms rainfall: " + rmsRainfall);
+		}
+	}
 	
+	//finds the wettest and wettest three month period and the total rainfall of this period
 	
 }
