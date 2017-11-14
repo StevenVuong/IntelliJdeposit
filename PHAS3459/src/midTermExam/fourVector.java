@@ -4,7 +4,7 @@ public class fourVector {
 
 	//initialise variables
 	
-	String E;
+	double E;
 	int nTracks;
 	String triggerId;
 	double charge;
@@ -13,7 +13,7 @@ public class fourVector {
 	double pz;
 	
 	//constructor to create object containing all the details of a 4-vector
-	public fourVector(String E, int nTracks, String triggerId, double charge, double px, double py, double pz) {
+	public fourVector(double E, int nTracks, String triggerId, double charge, double px, double py, double pz) {
 		
 		this.E = E;
 		this.nTracks = nTracks;
@@ -26,7 +26,7 @@ public class fourVector {
 	}
 
 	//generate getters for variables
-	public String getE() {
+	public double getE() {
 		return E;
 	}
 
