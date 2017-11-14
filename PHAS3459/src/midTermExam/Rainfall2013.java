@@ -18,6 +18,7 @@ public class Rainfall2013 {
 		
 		while (sc.hasNext()) { //condition to go through all the values in the line
 			String token = sc.next();
+		//	if (token.equals("2012")) break;
 			year_array.add(Double.parseDouble(token));
 		}
 		
@@ -121,6 +122,70 @@ public class Rainfall2013 {
 	
 	//finds the wettest and wettest three month period and the total rainfall of this period
 	public static void wettestThreeMonths(ArrayList<ArrayList<Double>> data) {
+		
+		//initialise variables
+		double maxRainfallThreeMonth = Double.MIN_VALUE;
+		ArrayList<Double> yearFinal = null;
+		int finalMonth = 0;
+		
+		for (int j = 0; j < data.size(); j++) { //loops through all the years
+			ArrayList<Double> yearIndex = data.get(j); //grabs the current year and makes an array 
+			for (int i = 3; i < 13; i++) {
+				double threeMonthRainfall = (yearIndex.get(i) + yearIndex.get(i-1) + yearIndex.get(i-2)); //calculates sum of rainfall for three consecutive months
+				if (threeMonthRainfall > maxRainfallThreeMonth) {
+					maxRainfallThreeMonth = threeMonthRainfall;
+					yearFinal = yearIndex;
+					finalMonth = i;
+				}
+			}
+		}
+		
+		System.out.println("Wettest three month period between month: " + (finalMonth-2) + " and " + (finalMonth) + ",in year: " + 
+		yearFinal + ", with rainfall amount: " + maxRainfallThreeMonth);
+		
+	}
+	
+	public static void finalYearAnalysis(ArrayList<ArrayList<Double>> data) {
+		
+		ArrayList<Double> finalYear = data.get((data.size() -1 )); //creates an array of final year values
+		int counter = 0;
+		
+		for (int i = 1; i < 13; i++) { //loops for each month
+			counter = 0; //reset counter for each month
+			for (int j = 0; j < data.size() - 1; j++) {
+				ArrayList<Double> year = data.get(j) ;
+				if (year.get(i) > finalYear.get(i)) { //condition to add to the counter
+					counter++;
+				}
+			}
+		
+			double percentage = (counter/(data.size())) * 100;
+			System.out.println("the percentage of previous years with greater rainfall for month: " + i + ", is " + percentage + "%");
+			
+		}
+	}
+	
+	public static void main(String[] args) {
+		
+		try {
+			
+			ArrayList<ArrayList<Double>> data = dataFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2012-13/HadEWP_monthly_qc.txt");
+			ArrayList<ArrayList<Double>> dataForFinalYear = data;
+			data.remove(data.size()-1); //removes 2012 (invalid) entry
+			
+			//runs methods
+			wettestMonth(data);
+			wettestYearEachMonth(data);
+			wettestThreeMonths(data);
+			finalYearAnalysis(dataForFinalYear);
+			
+		}
+		
+		catch (Exception e) {
+			
+			System.out.println(e.getMessage());
+
+		}
 		
 	}
 	
