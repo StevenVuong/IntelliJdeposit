@@ -9,10 +9,10 @@ public class Hitter {
 	int games;
 	int ab;
 	int runs;
-	int hits;
-	int doubles;
-	int triples;
-	int hr;
+	int Hits;
+	int Doubles;
+	int Triples;
+	int Hr;
 	int rbi;
 	double avg;
 	double obp;
@@ -27,10 +27,10 @@ public class Hitter {
 		this.games = games;
 		this.ab = ab;
 		this.runs = runs;
-		this.hits = hits;
-		this.doubles = doubles;
-		this.triples = triples;
-		this.hr = hr;
+		this.Hits = hits;
+		this.Doubles = doubles;
+		this.Triples = triples;
+		this.Hr = hr;
 		this.rbi = rbi;
 		this.avg = avg;
 		this.obp = obp;
@@ -41,8 +41,8 @@ public class Hitter {
 	}
 
 	public String getDetails() {
-		return ("Name: "+name+", Team: "+team+", Pos:"+pos+", N.o of Games: "+games+", Runs: "+runs+", hits: "+hits+", doubles: "+doubles+", triples: "+triples
-				+", hit rate: " +hr+", rbi: "+rbi+", average: "+avg+", obp: "+obp);
+		return ("Name: "+name+", Team: "+team+", Pos:"+pos+", N.o of Games: "+games+", Runs: "+runs+", hits: "+Hits+", doubles: "+Doubles+", triples: "+Triples
+				+", hit rate: " +Hr+", rbi: "+rbi+", average: "+avg+", obp: "+obp);
 	}
 	
 }

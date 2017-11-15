@@ -34,7 +34,7 @@ public class Year2016 {
 
 	}
 
-	public static ArrayList<Hitter> dataFromURLPlanet(String urlName) throws Exception {
+	public static ArrayList<Hitter> dataFromURLHitter(String urlName) throws Exception {
 		// Create an ArrayList of Hitter objects from a URL
 
 		// takes url and creates a buffered reader object
@@ -56,31 +56,11 @@ public class Year2016 {
 		return hitters;
 
 	}
-	
-	private static HashMap hashMapTeams(Hitter h) {
-		HashMap<String, ArrayList<Hitter>> hittersByTeam = new HashMap<String, ArrayList<Hitter>>();
 
-		// If the team has not yet been put into the HashMap, create a new ArrayList
-		// containing the current hitter and put it into the HashMap.
-		if (hittersByTeam.get(h.team) == null) {
-			ArrayList<Hitter> hitterArray = new ArrayList<Hitter>();
-			hitterArray.add(h);
-			hittersByTeam.put(h.team, hitterArray);
-		}
-		// If the team is already registered as a hashmap, scans hashmap for
-		// corresponding key, add current hitter to arraylist and update hashmap
-		else {
-			ArrayList<Hitter> hitterArray = hittersByTeam.get(h.team);
-			hitterArray.add(h);
-			hittersByTeam.put(h.team, hitterArray); // associates key to value
-		}
-		return hittersByTeam;
-	}
-	
 	public static void main(String[] args) {
 		try {
 
-			ArrayList<Hitter> allHitters = dataFromURLPlanet(
+			ArrayList<Hitter> allHitters = dataFromURLHitter(
 					"http://www.hep.ucl.ac.uk/undergrad/3459/exam_data/2016-17/MLB2001Hitting.txt");
 			System.out.println("\n There are  " + allHitters.size() + " Hitters in this list");
 
@@ -88,37 +68,73 @@ public class Year2016 {
 			int mostHomeRuns = 0;
 			Hitter mostHomeRunsHitter;
 			String mostHomeRunsHitterDetails = null;
+			HashMap<String, ArrayList<Hitter>> hittersByTeam = new HashMap<String, ArrayList<Hitter>>();
 
 			for (Hitter h : allHitters) { // loop over all hitters
-				if (h.hr > mostHomeRuns) { // condition to set for max homeruns
-					mostHomeRuns = h.hr;
+
+				// If the team has not yet been put into the HashMap, create a new ArrayList
+				// containing the current hitter and put it into the HashMap.
+				if (hittersByTeam.get(h.team) == null) {
+					ArrayList<Hitter> hitterArray = new ArrayList<Hitter>();
+					hitterArray.add(h);
+					hittersByTeam.put(h.team, hitterArray);
+				}
+				// If the team is already registered as a hashmap, scans hashmap for
+				// corresponding key, add current hitter to arraylist and update hashmap
+				else {
+					ArrayList<Hitter> hitterArray = hittersByTeam.get(h.team);
+					hitterArray.add(h);
+					hittersByTeam.put(h.team, hitterArray); // associates key to value
+				}
+
+				if (h.Hr > mostHomeRuns) { // condition to set for max homeruns
+					mostHomeRuns = h.Hr;
 					mostHomeRunsHitter = h;
 					mostHomeRunsHitterDetails = mostHomeRunsHitter.getDetails();
 				}
-				
 
-				// Initialise HashMap to hold team names as keys and an ArrayList of hitters as
-				// the values.
-				HashMap<String, ArrayList<Hitter>> hittersByTeam = hashMapTeams(h);
-				
-				for (String team : hittersByTeam.keySet()) { //loop through each team
-					
-					//initialise variables
-					int atBatsCounter = 0;
-					
-					ArrayList<Hitter> hittersInTeam = hittersByTeam.get(team); //creates arraylist of hitters for team considered
-					
-					for (Hitter hit : hittersInTeam) {
-						if (hit.ab > atBatsCounter) {
-							atBatsCounter++;
-						}
-					}
-//					double atBat = (h.hits)/(h.avg);
-//					if (atBat > 10) {
-//						atBatsCounter++;
-//					}
-				}//System.out.println("for team"+ hittersByTeam.keySet() + "there are " + atBatsCounter +" hitters with >10");
 			}
+
+			for (String team : hittersByTeam.keySet()) { // loop through each team
+
+				// initialise variables
+				int atBatsCounter = 0;
+				double highestSluggingPlayerValue = 0;
+				String highestSluggingPlayer = null;
+				//String highestSluggingPlayerDetails = null;
+				double OPSmax = 0;
+				String highestOPSPlayer = null;
+
+				ArrayList<Hitter> hittersInTeam = hittersByTeam.get(team); // creates arraylist of hitters for team
+																			// considered
+				
+				for (Hitter hit : hittersInTeam) { // loops through hitters in the team
+					if (hit.ab >= atBatsCounter) { // condition for At-bats counter to run
+						 atBatsCounter++;
+
+						double SLG = (((hit.Hits) + (2 * hit.Doubles) + (3 * hit.Triples) + (4 * hit.Hr)) / ((double) hit.ab));
+						if (SLG > highestSluggingPlayerValue) {
+							highestSluggingPlayerValue = SLG;
+							highestSluggingPlayer = hit.name;
+							//highestSluggingPlayerDetails = hit.getDetails();
+						}
+
+						 double OPS = (SLG + hit.obp);
+								if (OPS > OPSmax ) {
+									OPSmax = OPS;
+									highestOPSPlayer = hit.name;
+								}
+						
+					}
+				}
+//				System.out.println("------------------------------------------------------------------------");
+				System.out.println(
+						"\nfor team " + team + ", there are " + atBatsCounter + " players with at least 10 At-Bats");
+				System.out.println("for team " + team + ", the player with the highest slugging percentage is "
+						+ highestSluggingPlayer+ " for top 10 at bat players");
+				System.out.println("for team " + team+", the player with the highest OPS is " + highestOPSPlayer + " for top 10 at bat players");
+			}
+
 			System.out.println("\n The most homeruns Hitter has details: " + mostHomeRunsHitterDetails);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
