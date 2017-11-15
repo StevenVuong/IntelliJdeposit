@@ -80,7 +80,7 @@ public class year2013 {
 				vectorsByTrigger.put(fv.triggerId, currentId);
 			}
 		}
-		return vectorsByTrigger;
+		return vectorsByTrigger; //return hashmap with trigger id as string and arraylist of fourvectors as values
 	}
 		
 	public static void main(String[] args) {
