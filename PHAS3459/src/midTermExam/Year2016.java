@@ -56,13 +56,33 @@ public class Year2016 {
 		return hitters;
 
 	}
+	
+	private static HashMap hashMapTeams(Hitter h) {
+		HashMap<String, ArrayList<Hitter>> hittersByTeam = new HashMap<String, ArrayList<Hitter>>();
 
+		// If the team has not yet been put into the HashMap, create a new ArrayList
+		// containing the current hitter and put it into the HashMap.
+		if (hittersByTeam.get(h.team) == null) {
+			ArrayList<Hitter> hitterArray = new ArrayList<Hitter>();
+			hitterArray.add(h);
+			hittersByTeam.put(h.team, hitterArray);
+		}
+		// If the team is already registered as a hashmap, scans hashmap for
+		// corresponding key, add current hitter to arraylist and update hashmap
+		else {
+			ArrayList<Hitter> hitterArray = hittersByTeam.get(h.team);
+			hitterArray.add(h);
+			hittersByTeam.put(h.team, hitterArray); // associates key to value
+		}
+		return hittersByTeam;
+	}
+	
 	public static void main(String[] args) {
 		try {
 
 			ArrayList<Hitter> allHitters = dataFromURLPlanet(
 					"http://www.hep.ucl.ac.uk/undergrad/3459/exam_data/2016-17/MLB2001Hitting.txt");
-			System.out.println("There are  " + allHitters.size() + " Hitters in this list");
+			System.out.println("\n There are  " + allHitters.size() + " Hitters in this list");
 
 			// Initialise variables
 			int mostHomeRuns = 0;
@@ -75,28 +95,31 @@ public class Year2016 {
 					mostHomeRunsHitter = h;
 					mostHomeRunsHitterDetails = mostHomeRunsHitter.getDetails();
 				}
-				System.out.println("The most homeruns Hitter has details: " + mostHomeRunsHitterDetails);
+				
 
 				// Initialise HashMap to hold team names as keys and an ArrayList of hitters as
 				// the values.
-				HashMap<String, ArrayList<Hitter>> hittersByTeam = new HashMap<String, ArrayList<Hitter>>();
-
-				// If the team has not yet been put into the HashMap, create a new ArrayList
-				// containing the current hitter and put it into the HashMap.
-				if (hittersByTeam.get(h.team) == null) {
-					ArrayList<Hitter> hitterArray = new ArrayList<Hitter>();
-					hitterArray.add(h);
-					hittersByTeam.put(h.team, hitterArray);
-				}
-				// If the team is already registered as a hashmap, scans hashmap for
-				// corresponding key, add current hitter to arraylist and update hashmap
-				else {
-					ArrayList<Hitter> hitterArray = hittersByTeam.get(h.team);
-					hitterArray.add(h);
-					hittersByTeam.put(h.team, hitterArray); // associates key to value
-				}
+				HashMap<String, ArrayList<Hitter>> hittersByTeam = hashMapTeams(h);
+				
+				for (String team : hittersByTeam.keySet()) { //loop through each team
+					
+					//initialise variables
+					int atBatsCounter = 0;
+					
+					ArrayList<Hitter> hittersInTeam = hittersByTeam.get(team); //creates arraylist of hitters for team considered
+					
+					for (Hitter hit : hittersInTeam) {
+						if (hit.ab > atBatsCounter) {
+							atBatsCounter++;
+						}
+					}
+//					double atBat = (h.hits)/(h.avg);
+//					if (atBat > 10) {
+//						atBatsCounter++;
+//					}
+				}//System.out.println("for team"+ hittersByTeam.keySet() + "there are " + atBatsCounter +" hitters with >10");
 			}
-
+			System.out.println("\n The most homeruns Hitter has details: " + mostHomeRunsHitterDetails);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

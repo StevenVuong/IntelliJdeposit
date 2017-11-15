@@ -36,6 +36,10 @@ public class Hitter {
 		this.obp = obp;
 	}
 	
+	public String getTeam() {
+		return team;
+	}
+
 	public String getDetails() {
 		return ("Name: "+name+", Team: "+team+", Pos:"+pos+", N.o of Games: "+games+", Runs: "+runs+", hits: "+hits+", doubles: "+doubles+", triples: "+triples
 				+", hit rate: " +hr+", rbi: "+rbi+", average: "+avg+", obp: "+obp);
