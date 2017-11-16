@@ -173,15 +173,33 @@ public class Year2011 {
 					ArrayList<NeutrinoValues> NeutrinoValuesInteraction = NeutrinoValueHashMapInteraction.get(nvi); 
 					int counter = NeutrinoValuesInteraction.size();
 					double significance = 0;
-					
+					int appearanceCounter = 0;
+					int disappearanceCounter = 0;
+
 				//	compare to predicted
 					for (NeutrinoPredicted np : allNeutrinoPredicted) {
-						if ((nameValues.equals(np.NamePredicted)) || (nvi.equals(np.InteractionPredicted))) {
+						if ((nameValues.equals(np.NamePredicted)) || (nvi.equals(np.InteractionPredicted))) { //use .equals instead
 							significance = (counter - np.getFrequencyPredicted())/(Math.sqrt(np.getFrequencyPredicted()));
-							
+							if (significance > 3) {
+								appearanceCounter++;
+							}
+							if (significance < -3) {
+								disappearanceCounter++;
+							}
 						}
 					}
-					System.out.println("Experiment: " + nameValues + " || Interaction: "+nvi+" || Nm: " + counter +" || Significance: "+significance);
+					double ratio = (appearanceCounter/disappearanceCounter) ;
+					String Summary = ("The experimental evidence shows that the particle is likely to disappear");
+					if (ratio > 1.0f ) {
+						Summary = ("The experimental evidence shows that the particle is likely to appear");
+					}
+					if (ratio == 1.0f) {
+						Summary = ("The experimental evidence shows that the particle is equally likely to disappear or appear");
+					}
+					System.out.println("\nExperiment: " + nameValues + " || Interaction: "+nvi+" || Nm: " + counter +" || Significance: "+significance);
+					System.out.println("Appearance Counter: "+appearanceCounter+ " || "+"Disappearance Counter: "+disappearanceCounter + " || Ratio: " + ratio);
+					System.out.println(Summary);
+					
 				}		
 			}
 		}
