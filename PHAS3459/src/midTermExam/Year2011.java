@@ -120,27 +120,6 @@ public class Year2011 {
 		}
 	}
 
-	private static void getNeutrinoDataPredicted(ArrayList<NeutrinoPredicted> allNeutrinoValues,
-			HashMap<String, ArrayList<NeutrinoPredicted>> NeutrinoValuesHashMap) {
-		for (NeutrinoPredicted nv : allNeutrinoValues) { // loop over all experimental values
-
-			// If the particle has not yet been put into the HashMap, create a new ArrayList
-			// containing the current particle and put it into the HashMap.
-			if (NeutrinoValuesHashMap.get(nv.NamePredicted) == null) {
-				ArrayList<NeutrinoPredicted> NeutrinoValuesArray = new ArrayList<NeutrinoPredicted>();
-				NeutrinoValuesArray.add(nv);
-				NeutrinoValuesHashMap.put(nv.NamePredicted, NeutrinoValuesArray);
-			}
-			// If the name is already registered as a key, scans hashmap for
-			// corresponding key, add current particle to arraylist and update hashmap
-			else {
-				ArrayList<NeutrinoPredicted> NeutrinoValuesArray = NeutrinoValuesHashMap.get(nv.NamePredicted);
-				NeutrinoValuesArray.add(nv);
-				NeutrinoValuesHashMap.put(nv.NamePredicted, NeutrinoValuesArray); // associates key to value
-			}
-		}
-	}
-
 	public static void main(String[] args) {
 		try {
 
@@ -154,8 +133,6 @@ public class Year2011 {
 			// initialise hashmap of values, with name of experiment as key (for Predicted)
 			ArrayList<NeutrinoPredicted> allNeutrinoPredicted = dataFromURLNeutrinoPredicted(
 					"http://www.hep.ucl.ac.uk/undergrad/3459/exam_data/2010-11/midterm/NeutrinoExperiments.txt");
-			HashMap<String, ArrayList<NeutrinoPredicted>> NeutrinoPredictedHashMap = new HashMap<String, ArrayList<NeutrinoPredicted>>();
-			getNeutrinoDataPredicted(allNeutrinoPredicted, NeutrinoPredictedHashMap); // parses values into hashMap
 
 			for (String nameValues : NeutrinoValuesHashMap.keySet()) { // loop through each experiment name
 
