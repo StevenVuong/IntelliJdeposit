@@ -105,14 +105,12 @@ public class exam1 {
 			for (int currentMonth : iceByMonth.keySet()) { // loop through each Month
 
 				ArrayList<Ice> icyMonths = iceByMonth.get(currentMonth); //creates arraylist of values from months
-				
-				// Initialises hashmap with Year as key and ice objects as values
-				HashMap<Integer, ArrayList<Ice>> iceByYear = new HashMap<Integer, ArrayList<Ice>>();
-				// updates month hashmap to sort into order according to year
+				//System.out.println(icyMonths.size());
+				HashMap<Integer, ArrayList<Ice>> iceByYear = new HashMap<Integer, ArrayList<Ice>>();// Initialises hashmap with Year as key and ice objects as values
+				// updates month hashmap to sort into order according to year, it is now the period
 				yearHashMap(icyMonths, iceByYear);
-				// initialise arraylist of Period
-				ArrayList<Ice> period = iceByYear.get(currentMonth);
-				System.out.println(period.size());
+
+				
 				// initialise lowest ice extent and area values and objects
 				double lowestExtent = Double.MAX_VALUE;
 				Ice lowestExtentObject = null;
@@ -121,7 +119,7 @@ public class exam1 {
 				Ice lowestAreaObject = null;
 				String lowestAreaObjectDetails = null;
 
-				for (Ice ic : period) { // loops through period to set lowest ice extent and area
+				for (Ice ic : icyMonths) { // loops through period to set lowest ice extent and area
 					// updates values accordingly
 					if (ic.extent < lowestExtent) {
 						lowestExtent = ic.extent;
@@ -133,9 +131,7 @@ public class exam1 {
 						lowestAreaObject = ic;
 						lowestAreaObjectDetails = ic.getDetails();
 					}
-					// System.out.println("For Period(m/yyyy), Lowest Extent Details: " +
-					// lowestExtentObjectDetails + " || and Lowest Area Details: " +
-					// lowestAreaObjectDetails);
+					 System.out.println("For Period(m/yyyy), Lowest Extent Details: " + lowestExtentObjectDetails + " || and Lowest Area Details: " + lowestAreaObjectDetails);
 				}
 
 			}
