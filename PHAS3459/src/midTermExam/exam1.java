@@ -93,24 +93,32 @@ public class exam1 {
 
 	public static void main(String[] args) {
 		try {
-			ArrayList<Ice> allIce = dataFromURLIce(
-					"http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/N_extent_v3.0.csv");
+			ArrayList<Ice> allIce = dataFromURLIce("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/N_extent_v3.0.csv");
 			System.out.println("\n There are  " + allIce.size() + " datapoints in this list");
 
 			// Initialises hashmap with month as key and ice objects as values
 			HashMap<Integer, ArrayList<Ice>> iceByMonth = new HashMap<Integer, ArrayList<Ice>>();
 			// updates month hashmap to sort into order according to months
 			monthHashMap(allIce, iceByMonth);
-
+			
 			for (int currentMonth : iceByMonth.keySet()) { // loop through each Month
 
 				ArrayList<Ice> icyMonths = iceByMonth.get(currentMonth); //creates arraylist of values from months
-				//System.out.println(icyMonths.size());
-				HashMap<Integer, ArrayList<Ice>> iceByYear = new HashMap<Integer, ArrayList<Ice>>();// Initialises hashmap with Year as key and ice objects as values
-				// updates month hashmap to sort into order according to year, it is now the period
-				yearHashMap(icyMonths, iceByYear);
-
+				// Initialises hashmap with Year as key and ice objects as values
+				HashMap<Integer, ArrayList<Ice>> iceByYear = new HashMap<Integer, ArrayList<Ice>>();
+				yearHashMap(icyMonths, iceByYear);// updates month hashmap to sort into order according to year, it is now the period
+	
+				//initialise values 
+				double lowestIceAreaYear = Double.MAX_VALUE;
+				double lowestIceAreaYearValue = Double.MAX_VALUE;
+				for (Ice icy : icyMonths) {
+					if (icy.area < lowestIceAreaYear) {
+						lowestIceAreaYearValue = icy.year;
+					}
+				}
 				
+				System.out.println("Month: " + currentMonth+ " || Lowest Ice Year: "+lowestIceAreaYearValue);
+
 				// initialise lowest ice extent and area values and objects
 				double lowestExtent = Double.MAX_VALUE;
 				Ice lowestExtentObject = null;
@@ -118,7 +126,6 @@ public class exam1 {
 				double lowestArea = Double.MAX_VALUE;
 				Ice lowestAreaObject = null;
 				String lowestAreaObjectDetails = null;
-
 				for (Ice ic : icyMonths) { // loops through period to set lowest ice extent and area
 					// updates values accordingly
 					if (ic.extent < lowestExtent) {
@@ -131,10 +138,44 @@ public class exam1 {
 						lowestAreaObject = ic;
 						lowestAreaObjectDetails = ic.getDetails();
 					}
-					 System.out.println("For Period(m/yyyy), Lowest Extent Details: " + lowestExtentObjectDetails + " || and Lowest Area Details: " + lowestAreaObjectDetails);
+					
+					System.out.println("\nFor Period (m/yy)" + currentMonth+"/"+ic.year);
+					 System.out.println("Lowest Extent Details: " + lowestExtentObjectDetails );
+					 System.out.println("Lowest Area Details: " + lowestAreaObjectDetails);
+					
 				}
+				
+				
+				for (int currentYear : iceByYear.keySet()) { // loop through each Year
+					ArrayList<Ice> icyYears = iceByYear.get(currentYear); //creates arraylist of ice objects for each year
+					ArrayList<Ice> icyYearsPlus = iceByYear.get(currentYear); //creates arraylist of ice objects for each year
+					
+					//initilaise variables
+					double areaSum = 0;
+					double areaSumYearAfter = 0;
+					Ice yearAfterOne = null;
+					
+					for (int j = 0 ; j < icyYears.size(); j++) { //loop through years
+						Ice Year = icyYears.get(j);
+						areaSum += Year.area;
+						//initialise variables again inside loop
+						int YearPlusOne;
+						double areaDifference = 0;
+						double yearPlusOneArea = 0;
+						for (int i = j ; i < icyYearsPlus.size(); i++) { //loops through years again to find sum of values for that year
+							Ice YearAfter = icyYears.get(i);
+							areaSumYearAfter += YearAfter.area;
+							areaDifference = YearAfter.area - Year.area;
+							
+							System.out.println("Month: "+currentMonth + " || Year & Previous Year: "+YearAfter.year +" - "+((Year.year)-1)+" || Area Difference:" + areaDifference);
+						}
 
+					}
+				}
+				
+				
 			}
+
 		}
 
 		catch (Exception e) {
