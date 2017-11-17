@@ -12,7 +12,7 @@ import java.util.Scanner;
 import java.util.HashMap;
 import java.util.List;
 
-public class year2015 {
+public class Year2015 {
 
 	public static Earthquake parseLine(String line) {
 		// Return a Earthquake object containing all the data of one Earthquake.

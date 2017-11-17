@@ -5,7 +5,7 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class year2013 {
+public class Year2013 {
 
 	public static ArrayList<fourVector> dataFromURL(String urlName) throws IOException {
 
