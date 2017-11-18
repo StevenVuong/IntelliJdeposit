@@ -148,7 +148,7 @@ public class exam1 {
 				
 				for (int currentYear : iceByYear.keySet()) { // loop through each Year
 					ArrayList<Ice> icyYears = iceByYear.get(currentYear); //creates arraylist of ice objects for each year
-					ArrayList<Ice> icyYearsPlus = iceByYear.get(currentYear); //creates arraylist of ice objects for each year
+					ArrayList<Ice> icyYearsPlus = iceByYear.get(currentYear+1); //creates arraylist of ice objects for each year
 					
 					//initilaise variables
 					double areaSum = 0;
