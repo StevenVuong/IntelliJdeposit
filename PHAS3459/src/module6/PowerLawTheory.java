@@ -18,9 +18,9 @@ public abstract class PowerLawTheory implements Theory {
 		return Math.pow(x, n);
 	}
 	
-	//toString method stating the function
+	// toString method stating the function
 	public String toString() {
-		return ("x^"+n);
+		return ("x^" + n);
 	}
 	
 }
