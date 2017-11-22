@@ -7,7 +7,7 @@ public class LabelledDataPoint extends DataPoint{
 	String label;
 	
 	//initialise member variables specific to subclass
-	public LabelledDataPoint(double x, double y, double ey) { //inherits variables from DataPoint class
+	public LabelledDataPoint(String label, double x, double y, double ey) { //inherits variables from DataPoint class
 		super(x, y, ey);
 		this.label = label;
 	}
