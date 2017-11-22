@@ -43,4 +43,8 @@ public class DataPoint {
 		return this.ey;
 	}
 
+	public String toString() {
+		return ("x = "+this.x+", y = "+this.y+" +/- "+this.ey);
+	}
+	
 }
