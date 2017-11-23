@@ -1,6 +1,6 @@
 package module6;
 
-public abstract class QuadraticTheory implements Theory {
+public class QuadraticTheory implements Theory {
 	// class holding mathematical relation between x and y values (quadratic
 	// relationship)
 

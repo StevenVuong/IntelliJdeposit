@@ -1,6 +1,6 @@
 package module6;
 
-public abstract class PowerLawTheory implements Theory {
+public class PowerLawTheory implements Theory {
 	//class holding mathematical relation between x and y value (powerOf relationship)
 	
 	//define member variables (n is the power)
