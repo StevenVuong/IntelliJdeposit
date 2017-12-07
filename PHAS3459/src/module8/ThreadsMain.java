@@ -22,6 +22,9 @@ public class ThreadsMain {
 			cdtThread.join(); 
 			pntThread.interrupt();
 			
+			System.out.println("Largest Integer: " + pnt.numbersTested); 
+			System.out.println("Largest Prime Number: " + pnt.primeNumberList.get(pnt.primeNumberList.size()-1));
+			System.out.println("Number of Prime Numbers found: " + pnt.primeNumberList.size());
 		}
 		catch (InterruptedException e) {
 			System.out.println(e.getMessage());
