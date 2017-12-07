@@ -8,7 +8,7 @@ package module8;
 
 public class ThreadsMain {
 	
-	public static void Main(String[] args) {
+	public static void main(String[] args) {
 		try {
 			//Create objects to countdown and to calculate primes
 			CountdownTask cdt = new CountdownTask(10);
