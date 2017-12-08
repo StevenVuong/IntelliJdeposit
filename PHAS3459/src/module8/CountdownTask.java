@@ -29,12 +29,13 @@ public class CountdownTask implements Runnable{
 		while (time >= 1) { 
 			try {
 				Thread.sleep(1000); //Pause for 1 second for given times until t=0
+				System.out.println("Time Remaining: "+(time-1));
+				time--;//Reduce the timer by 1 second
 			}
 			catch (InterruptedException e) { //Stop early if main thread is interrupted (or runs forever)
 				System.out.println(e);
 			}
 		}
-		time --; //Reduce the timer by 1 second
 	}
 	
 
