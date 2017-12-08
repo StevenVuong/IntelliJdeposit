@@ -13,6 +13,7 @@ import java.util.concurrent.Callable;
 public class MonteCarloPiCalculatorTask implements Callable<Double> {
 
 	private final long n_points;
+	double pi;
 
 	/**
 	 * Constructor using nPoints data points
