@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public class PrimeNumberTask implements Runnable {
 
 	ArrayList<Integer> primeNumberList = new ArrayList<Integer>(); //Initialise arraylist of prime numbers
+
 	int numbersTested;
 	
 	/**
@@ -42,5 +43,4 @@ public class PrimeNumberTask implements Runnable {
 		}
 		return true;
 	}
-
 }
