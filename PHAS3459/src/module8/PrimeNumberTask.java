@@ -35,8 +35,8 @@ public class PrimeNumberTask implements Runnable {
 				
 				return; 
 			}
-			largestInteger = i;
 			i++;
+			largestInteger = i;
 		}
 	}
 	
