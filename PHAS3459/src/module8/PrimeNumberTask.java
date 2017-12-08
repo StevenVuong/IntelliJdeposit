@@ -14,7 +14,7 @@ public class PrimeNumberTask implements Runnable {
 
 	ArrayList<Integer> primeNumberList = new ArrayList<Integer>(); //Initialise arraylist of prime numbers
 
-	int numbersTested;
+	int largestInteger;
 	
 	/**
 	 * Check if number is prime, adds any prime numbers found to arraylist
@@ -25,7 +25,7 @@ public class PrimeNumberTask implements Runnable {
 		while (true) {
 			if (Thread.currentThread().isInterrupted()) return; //Stop if interrupted
 			if (isPrime(i)) primeNumberList.add(i); //Add number to primenumber list if prime
-			numbersTested = i;
+			largestInteger = i;
 			i++;
 		}
 	}

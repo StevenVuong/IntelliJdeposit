@@ -26,7 +26,7 @@ public class ThreadsMain {
 			
 			int maxPrimeValue = getMaxPrime(pnt.primeNumberList);
 			
-			System.out.println("Largest Integer: " + pnt.numbersTested); 
+			System.out.println("Largest Integer: " + pnt.largestInteger); 
 			System.out.println("Largest Prime Number: " + maxPrimeValue);
 			System.out.println("Number of Prime Numbers found: " + pnt.primeNumberList.size());
 		}
