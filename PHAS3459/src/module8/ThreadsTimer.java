@@ -3,6 +3,12 @@ package module8;
 import java.util.*;
 import java.util.concurrent.*;
 
+/**
+ * Main class to calculate pi using MonteCarlo method by running 1 and 4 threads
+ * @author Steven Vuong
+ * @version: 08-12-2017
+ */
+
 public class ThreadsTimer {
 
 	public static void main(String[] args) {
