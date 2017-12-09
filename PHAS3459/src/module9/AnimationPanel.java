@@ -50,6 +50,24 @@ public class AnimationPanel extends JPanel implements ActionListener {
 		
 		int height = getHeight();
 		int width = getWidth();
+		
+		//Fill in background
+		g.setColor(Color.DARK_GRAY);
+		g.fillRect(0, 0, width, height);
+		
+		//Move origin to centre of panel
+		g.translate(width/2, height/2);
+		
+		//Draw Sun
+		g.setColor(Color.YELLOW);
+		g.fillOval(-5, -5, 10, 10);
+		
+		//Draw Planets
+		g.setColor(Color.LIGHT_GRAY);
+		g.fillOval((int)(Mercury.x/2E10), (int)(Mercury.y/2E10), Mercury.radius, Mercury.radius);
+	
+		g.setColor(Color.WHITE);
+		g.fillOval((int)(Venus.x/2E10), (int)(Venus.y/2E10), Venus.radius, Venus.radius);
 	}
 	
 }
