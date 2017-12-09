@@ -66,6 +66,6 @@ public class Rock {
 		
 		//Update velocity components
 		vx = vx - (ax * t);
-		vy = vy - (ay * t);
+		vy = vy - (ay * t); 
 	}
 }
