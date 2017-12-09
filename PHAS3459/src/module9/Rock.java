@@ -45,7 +45,7 @@ public class Rock {
 	
 	/**
 	 * Calculate acceleration towards Sun and update position of the body
-	 * @param t Time elapsed since last simulation in seconds
+	 * @param t Time elapsed since last simulation in seconds 
 	 */
 	public void increment(int t) {
 		double accel = G * M / (x*x + y*y);
