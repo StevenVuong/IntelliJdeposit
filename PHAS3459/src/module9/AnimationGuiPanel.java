@@ -46,16 +46,15 @@ public class AnimationGuiPanel extends JPanel implements ActionListener {
 		add(animPanel);
 		add(buttonPanel);
 		
-		/**
-		 * Respond to button clicks
-		 */
-		public void actionPerformed(ActionEvent e) {
-			if (e.getSource() == startButton) start();
-			else if (e.getSource() == stopButton) stop();
-			else if (e.getSource() == exitButton) System.exit(0);
-		}
-		
 	}
+	
+	/**
+	 * Start animation when applet is started
+	 */
+	public void start() {
+		animPanel.start();
+	}
+	
 	/**
 	 * Stop animation when applet is stopped
 	 */
@@ -64,10 +63,12 @@ public class AnimationGuiPanel extends JPanel implements ActionListener {
 	}
 
 	/**
-	 * Start animation when applet is started
+	 * Respond to button clicks
 	 */
-	public void start() {
-		animPanel.start();
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == startButton) start();
+		else if (e.getSource() == stopButton) stop();
+		else if (e.getSource() == exitButton) System.exit(0);
 	}
 
 }
