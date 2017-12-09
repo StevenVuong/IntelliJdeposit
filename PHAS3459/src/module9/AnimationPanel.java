@@ -99,8 +99,43 @@ public class AnimationPanel extends JPanel implements ActionListener {
 			}
 		}
 		else g.drawString("The comet has fully vaporised. ", -250, -230);
-		
 		g.drawString(("Time elapsed: " + day + " days"), -250 , -250);
+		day++;
 	}
 	
+	/**
+	 * This is called by the animation Timer object
+	 * at regular intervals to rotate the shape and update the display
+	 */
+	public void actionPerformed(ActionEvent event) {
+		//Update position, velocity and acceleration for all bodies
+		Mercury.increment(delta);
+		Venus.increment(delta);
+		Earth.increment(delta);
+		Mars.increment(delta);
+		Jupiter.increment(delta);
+		Saturn.increment(delta);
+		Uranus.increment(delta);
+		Neptune.increment(delta);
+		Icarus.increment(delta);
+		if (Comet.radius > 0) {
+			Comet.increment(delta);
+		}
+		
+		repaint();
+	}
+	
+	/**
+	 * Start the animation
+	 */
+	public void start() {
+		animationTimer.start();
+	}
+	
+	/**
+	 * Stop the animation
+	 */
+	public void stop() {
+		animationTimer.stop();
+	}
 }
