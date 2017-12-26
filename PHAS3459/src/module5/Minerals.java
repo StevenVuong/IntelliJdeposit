@@ -1,6 +1,7 @@
 package module5;
 
 import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
@@ -52,11 +53,7 @@ public class Minerals {
 	public static HashMap<Integer, Double> massFromURL(String urlName) throws IOException {
 		// Creates HashMap object for masses input url name
 
-		// turns url string into buffered reader object
-		URL u = new URL(urlName); // Creates url object
-		InputStream is = u.openStream();
-		InputStreamReader isr = new InputStreamReader(is);
-		BufferedReader b = new BufferedReader(isr);
+		BufferedReader b = urlData(urlName);
 
 		HashMap<Integer, Double> masses = new HashMap<Integer, Double>(); // Define Hashmap containing mass and code of
 																			// sample
@@ -68,14 +65,19 @@ public class Minerals {
 		return masses;
 	}
 
-	public static HashMap<Integer, String> locFromURL(String urlName) throws IOException {
-		// Creates Hashmap object for locations from text input URL
-
+	private static BufferedReader urlData(String urlName) throws MalformedURLException, IOException {
 		// turns url string into buffered reader object
-		URL u = new URL(urlName);
+		URL u = new URL(urlName); // Creates url object
 		InputStream is = u.openStream();
 		InputStreamReader isr = new InputStreamReader(is);
 		BufferedReader b = new BufferedReader(isr);
+		return b;
+	}
+
+	public static HashMap<Integer, String> locFromURL(String urlName) throws IOException {
+		// Creates Hashmap object for locations from text input URL
+
+		BufferedReader b = urlData(urlName);
 
 		HashMap<Integer, String> loc = new HashMap<Integer, String>(); // Defines Hashmap containing sample locations
 		String empty = "";
