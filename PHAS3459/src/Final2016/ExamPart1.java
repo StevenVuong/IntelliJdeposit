@@ -1,5 +1,11 @@
 package Final2016;
 
+/**
+ * Class with main method to print information about audio file objects from URL
+ * @author Steven Vuong
+ * @version 30-12-2017
+ */
+
 import java.io.*;
 import java.net.*;
 import java.util.*;
@@ -53,7 +59,7 @@ public class ExamPart1 {
 	 * @return ArrayList of audio objects
 	 * @throws IOException
 	 */
-	private static ArrayList<Audio> getAudioFiles() throws IOException {
+	public static ArrayList<Audio> getAudioFiles() throws IOException {
 		//Create Audio objects, gathering data from URLs
 		Audio recording1 = audioFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording01.txt");
 		Audio recording2 = audioFromURL("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/recording02.txt");
@@ -132,11 +138,11 @@ public class ExamPart1 {
 			ArrayList<Audio> audioFiles = getAudioFiles();
 			HashMap<String, String> indexHM = indexHashMap("http://www.hep.ucl.ac.uk/undergrad/3459/exam-data/2016-17/index.txt");
 			
-			for (Audio af : audioFiles) {
+			for (Audio af : audioFiles) { //Loop through each audio file and print information as necessary
 				
 				String filename = af.FileName;
-				Double duration = (double) (af.SampleCount/af.Freq);
-				Double amplitude = 20 * Math.log10((af.aRMS/af.MaxAmp));
+				Double duration = (double) (af.SampleCount/af.Freq); //Calculate duration
+				Double amplitude = 20 * Math.log10((af.aRMS/af.MaxAmp)); //Calculate amplitude
 				String Instrument = indexHM.get(af.FileName);
 				
 				System.out.println("FileName: "+filename+", Duration: "+duration+", Amplitude: "+amplitude+", Instrument: "+Instrument);
