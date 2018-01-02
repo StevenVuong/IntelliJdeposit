@@ -40,7 +40,7 @@ public class Audio {
 		for (Integer i: this.Data) {
 			total += Math.pow(i, 2); //Calculate square to add to total
 		}
-		this.aRMS = (total / this.Data.size());
+		this.aRMS = Math.sqrt(total / this.Data.size());
 	}
 
 }

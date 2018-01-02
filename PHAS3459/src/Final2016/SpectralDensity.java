@@ -21,8 +21,8 @@ public class SpectralDensity implements Classify {
 		double sumCos = 0;
 		double sumSin = 0;
 		for (int n = 0; n < bigN; ++n) {
-		sumCos += samples.get(n)* Math.cos(z*n);
-		sumSin += samples.get(n)* Math.sin(z*n);
+		sumCos += (double)samples.get(n)* Math.cos(z*n);
+		sumSin += (double) samples.get(n)* Math.sin(z*n);
 		}
 		double norm = t / (bigN*bigN);
 		return norm * (sumCos*sumCos + sumSin*sumSin);
@@ -36,9 +36,9 @@ public class SpectralDensity implements Classify {
 	 */
 	public String classify(Audio au) {
 		
-		double sd100 = spectralDensity(au.Data, (au.SampleCount/au.Freq), 100);
-		double sd400 = spectralDensity(au.Data, (au.SampleCount/au.Freq), 400);
-		double sd1000 = spectralDensity(au.Data, (au.SampleCount/au.Freq), 1000);
+		double sd100 = spectralDensity(au.Data, (au.SampleCount/au.Freq), 100.0);
+		double sd400 = spectralDensity(au.Data, (au.SampleCount/au.Freq), 400.0);
+		double sd1000 = spectralDensity(au.Data, (au.SampleCount/au.Freq), 1000.0);
 
 		if ((sd100 > sd400) & (sd100 > sd1000)) {return "low";}
 		if ((sd400 > sd100) & (sd400 > sd1000)) {return "medium";}

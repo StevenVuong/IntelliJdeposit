@@ -141,11 +141,11 @@ public class ExamPart1 {
 			for (Audio af : audioFiles) { //Loop through each audio file and print information as necessary
 				
 				String filename = af.FileName;
-				Double duration = (double) (af.SampleCount/af.Freq); //Calculate duration
+				Double duration = ((double)af.SampleCount/(double)af.Freq); //Calculate duration
 				Double amplitude = 20 * Math.log10((af.aRMS/af.MaxAmp)); //Calculate amplitude
 				String Instrument = indexHM.get(af.FileName);
 				
-				System.out.println("FileName: "+filename+", Duration: "+duration+", Amplitude: "+amplitude+", Instrument: "+Instrument);
+				System.out.println("FileName: "+filename+", Duration: "+duration+"s, Amplitude: "+amplitude+"dB, Instrument: "+Instrument);
 				
 			}
 			
