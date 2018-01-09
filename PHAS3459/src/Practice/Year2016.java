@@ -4,7 +4,7 @@ package Practice;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
-
+//String FileName = url.substring(58); //File name is after the 58th character
 public class Year2016 {
 
 	/**
