@@ -131,8 +131,10 @@ public class Main {
 				}
 				
 			}
+
 			System.out.println("");
-			System.out.println("Names of animals found exclusively in the region: "+hmSpeciesNames.keySet());
+			System.out.println("Names of animals found exclusively in the region: "+hmSpeciesNames.keySet().size());
+			
 		}
 		
 		catch (Exception e) {

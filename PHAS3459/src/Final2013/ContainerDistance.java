@@ -35,6 +35,8 @@ public class ContainerDistance implements ContainerInterface {
 		
 	}
 	
+	double earthRadius = 6371; //Set earths radius
+	
 	/**
 	 * Calculates distance between a specimen and a point
 	 * @param Specimen
@@ -44,32 +46,19 @@ public class ContainerDistance implements ContainerInterface {
 	 */
 	public double calculateDistance(Specimen sn, Double latitude, Double longitude) {
 		
-		double theta = sn.Longitude - longitude;
-		double dist = Math.sin(deg2rad(sn.Latitude)) * Math.sin(deg2rad(latitude)) + Math.cos(deg2rad(sn.Latitude)) * Math.cos(deg2rad(latitude)) * Math.cos(deg2rad(theta));
-		dist = Math.acos(dist);
-		dist = rad2deg(dist);
-		dist = dist * 60 * 1.1515;
-		dist = dist * 1.609344; //converts to km
-
-		return dist;
+		double h = (haversin(sn.Latitude - latitude) + (Math.cos(sn.Latitude)*Math.cos(latitude)*haversin(sn.Longitude-longitude)));
+		
+		return (2 * earthRadius * Math.asin(Math.pow(h, 0.5)));
 	}
 	
-	/**
-	 * converts degrees to radians
-	 * @param radians
-	 * @return degrees
-	 */
-	private static double deg2rad(double deg) {
-		return (deg * Math.PI / 180.0);
-	}
-	
-	/**
-	 * converts radians to degrees
-	 * @param rad
-	 * @return degrees
-	 */
-	private static double rad2deg(double rad) {
-		return (rad * 180 / Math.PI);
+/**
+ * Calculates haversin
+ * @param theta double
+ * @return haversin
+ */
+	public double haversin(double theta) {
+		
+		return Math.pow(Math.sin(theta/2), 2); //calculates haversin
 	}
 
 }
