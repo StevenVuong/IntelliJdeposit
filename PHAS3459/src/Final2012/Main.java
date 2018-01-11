@@ -92,25 +92,39 @@ public class Main {
 			System.out.println("LogLikelyhood for ZZ: "+logLikelyhoodZZ);
 			
 			/**
-			 * Part 2
+			 * Part 2 & 3
 			 */
 			//Initialise variables
 			//channel a
 			Double NA = 100.0;
 			Double SigmaA = 2.0;
 			Double MassA = 110.5;
+			Double LLsumA = 0.0;
+			double lowestMassA = 0.0;
+			double LowestLogA = 1000000.0;
 			
 			while (MassA < 179.6) { //produce 80 signal productions
 			HashMap<Double, Double> partA = (new PredictionGaussian()).prediction(NA, MassA, SigmaA);
 			
-			for (Double d : partA.keySet()) {
-				double yi = partA.get(d);
-			
-				for (Event eG : backgroundGG) {
+			for (Double d : partA.keySet()) { //loops through energy bins
+				
+				/**
+				 * The yi calculation is wrong, the values returned for it are way too low.. Problem may lie in PredictionGaussian
+				 */
+				double yi = partA.get(d); //grabs predicted number for that energy set
+				
+				for (Event eG : backgroundGG) { //loops through background GG prediction values
 					
 					if ((d - eG.lowEdge) < 0.51) {
 						
 						double ni = eG.predictedNumberEvents;
+						double LL = (yi - ni) + (ni * Math.log(ni/yi));
+						if (LL < LowestLogA) {
+							LowestLogA = LL;
+							lowestMassA = MassA;
+						}
+						LLsumA += LL;
+						
 						
 					}
 					
@@ -121,33 +135,46 @@ public class Main {
 			MassA = MassA + 1;
 			
 			}
+			System.out.println("Channel GG, Lowest mass is: "+lowestMassA);
 		
 			//channel b
 			Double NB = 6.0;
 			Double SigmaB = 1.0;
 			Double MassB = 110.5;
+			double LLsumB = 0.0;
+			double lowestMassB = 0.0;
+			double LowestLogB = 1000000.0;
 			while (MassB < 179.5) {
 			HashMap<Double, Double> partB = (new PredictionGaussian()).prediction(NB, MassB, SigmaB);
-			double LLsum = 0.0;
 			for (Double d : partB.keySet()) {
 				
 				double yi = partB.get(d);
-
+				
 				for (Event eZ : backgroundZZ) { //Loop through ArrayList
 					
 					if ((d - eZ.lowEdge) < 0.51) {
 						
 						double ni = eZ.predictedNumberEvents;
 						double LL = (yi - ni) + (ni * Math.log(ni/yi));
-						LLsum += LL;
+						if (LL < LowestLogB) {
+							LowestLogB = LL;
+							lowestMassB = MassB;
+						}
+						LLsumB += LL;
 					}
 					
 				}
 				}
-			System.out.println("log likelyhood for mass: "+MassB+"is "+LLsum);
+			//System.out.println("log likelyhood for mass: "+MassB+"is "+LLsum);
 			MassB = MassB + 1;
 			//Produce 80 signal predictions
 			}
+			System.out.println("Channel ZZ, Lowest mass is: "+lowestMassB);
+			
+			double sigmaz = Math.pow(-2*(LLsumB-LLsumA), 0.5);
+			
+			System.out.println("");
+			System.out.println(sigmaz);
 			
 		}
 		

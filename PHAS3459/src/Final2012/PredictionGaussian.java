@@ -23,9 +23,9 @@ public class PredictionGaussian implements PredictionInterface {
 	
 	public double calcF(Double Energy, Double N, Double Mass, Double Sigma) {
 		
-		double f = (N / (Sigma * Math.sqrt(2*Math.PI))) * (Math.pow(Math.E, -(Math.pow((Energy - Mass),2) / (2*Math.pow(Sigma, 2))))); 
+		double g = (N / (Sigma * Math.pow(2*Math.PI, 0.5))) * Math.pow(Math.E, -(Math.pow(Energy-Mass, 2) / (2 * Math.pow(Sigma, 2))));
 		
-		return f;
+		return g;
 	}
 	
 	public double calcNumberEvents(Double Energy, Double N, Double Mass, Double Sigma) {
