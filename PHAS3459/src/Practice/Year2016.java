@@ -1,12 +1,34 @@
 package Practice;
-
-//Import necessary classes
+//18:56 - 21:56
 import java.io.*;
 import java.net.URL;
 import java.util.*;
 //String FileName = url.substring(58); //File name is after the 58th character
 //ArrayList<Integer> nums = new ArrayList<Integer>();
 //Collections.sort(nums); //Sorts the order. There is also Collections.Max().
+//Hindsight, make another hashmap with region as key and arraylist of region objects as values .
+//Have you tried hashmap inside a hashmap?
+//double totalTimeSb1 = System.currentTimeMillis() - startTimeSb1;
+
+/*public static void writeToFile() throws IOException {
+    
+    File fout = new File("C:\\files\\signal.txt"); //creates a new file and saves in this particular location
+	FileOutputStream fos = new FileOutputStream(fout);
+ 
+	BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(fos)); //creates bufferedwriter object
+ 
+	for (int i = 0; i < 100; i++) { //loops through 100 times
+		
+		double energy = generateEnergy(2.5, 0.25); //gets energy from other method, setting mean to 2.5 and standard dev to 0.25
+		String energyString = String.valueOf(energy);
+		bw.write(energyString); //writes the bytes to file
+		bw.newLine(); //reads to a new line each time
+		
+	}
+ 
+	bw.close();
+}*/
+
 public class Year2016 {
 
 	/**
